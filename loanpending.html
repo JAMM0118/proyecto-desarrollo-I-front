@@ -22,67 +22,69 @@
 <body>
     <div class="navbar-lateral full-reset">
         <div class="visible-xs font-movile-menu mobile-menu-button"></div>
-        <div class="full-reset container-menu-movile custom-scroll-containers">
-            <div class="logo full-reset all-tittles">
+        <div class="full-reset container-menu-movile custom-scroll-containers" style="background-color: #e6373c;">
+            <div class="logo full-reset all-tittles" style="font-size: 25px;color:rgba(202, 0, 0, 0.89); background-color: #ffffff;">
                 <i class="visible-xs zmdi zmdi-close pull-left mobile-menu-button" style="line-height: 55px; cursor: pointer; padding: 0 10px; margin-left: 7px;"></i> 
                 sistema bibliotecario
             </div>
-            <div class="full-reset" style="background-color:#2B3D51; padding: 10px 0; color:#fff;">
+            <div class="full-reset" style="padding: 10px 0; color:#fff;">
                 <figure>
                     <img src="assets/img/logo.png" alt="Biblioteca" class="img-responsive center-box" style="width:55%;">
                 </figure>
             </div>
-            <div class="full-reset nav-lateral-list-menu">
+            <div class="full-reset nav-lateral-list-menu" style="background-color: #e6373c;">
                 <ul class="list-unstyled">
                     <li><a href="home.html"><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp; Inicio</a></li>
-                    <li>
-                        <div class="dropdown-menu-button"><i class="zmdi zmdi-case zmdi-hc-fw"></i>&nbsp;&nbsp; Administración <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
-                        <ul class="list-unstyled">
-                            <li><a href="category.html"><i class="zmdi zmdi-bookmark-outline zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo Genero</a></li>
-                        </ul>
-                    </li>
+                    
                     <li>
                         <div class="dropdown-menu-button"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>&nbsp;&nbsp; Registro de usuarios <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
-                            <li><a href="admin.html"><i class="zmdi zmdi-face zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo administrador</a></li>
-                            <li><a href="personal.html"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo personal administrativo</a></li>
-                            <li><a href="teacher.html"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo cliente</a></li>
+                            <li style="background-color: #e6373c;"><a href="admin.html"><i class="zmdi zmdi-face zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo administrador</a></li>
+                            <li style="background-color: #e6373c;"><a href="personal.html"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo personal administrativo</a></li>
+                            <li style="background-color: #e6373c;"><a href="teacher.html"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo cliente</a></li>
                             
                         </ul>
                     </li>
                     <li>
                         <div class="dropdown-menu-button"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i>&nbsp;&nbsp; Libros <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
-                            <li><a href="book.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo libro</a></li>
-                            <li><a href="catalog.html"><i class="zmdi zmdi-bookmark-outline zmdi-hc-fw"></i>&nbsp;&nbsp; Catálogo</a></li>
+                            <li style="background-color: #e6373c;"><a href="book.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo libro</a></li>
+                            
+                            <li style="background-color: #e6373c;"><a href="listbook.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i>&nbsp;&nbsp; Lista Libros</a></li>
+                            
                         </ul>
                     </li>
                     <li>
-                        <div class="dropdown-menu-button"><i class="zmdi zmdi-alarm zmdi-hc-fw"></i>&nbsp;&nbsp; Préstamos y reservaciones <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
+                        <div class="dropdown-menu-button"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i>&nbsp;&nbsp; Datos <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
                         <ul class="list-unstyled">
-                            <li><a href="loan.html"><i class="zmdi zmdi-calendar zmdi-hc-fw"></i>&nbsp;&nbsp; Todos los préstamos</a></li>
-                            <li>
-                                <a href="loanpending.html"><i class="zmdi zmdi-time-restore zmdi-hc-fw"></i>&nbsp;&nbsp; Devoluciones pendientes <span class="label label-danger pull-right label-mhover">7</span></a>
-                            </li>
-                            <li>
-                                <a href="loanreservation.html"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>&nbsp;&nbsp; Reservaciones <span class="label label-danger pull-right label-mhover">7</span></a>
+                            <li style="background-color: #e6373c;"><a href="listadmin.html"><i class="zmdi zmdi-face zmdi-hc-fw"></i>&nbsp;&nbsp; Lista administradores</a></li>
+                            <li style="background-color: #e6373c;"><a href="listpersonal.html"><i class="zmdi zmdi-male-female zmdi-hc-fw"></i>&nbsp;&nbsp; Lista personal administrativo</a></li>
+                            <li style="background-color: #e6373c;"><a href="listteacher.html"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i>&nbsp;&nbsp; Lista clientes</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="dropdown-menu-button"><i class="zmdi zmdi-alarm zmdi-hc-fw"></i>&nbsp;&nbsp; Préstamos <i class="zmdi zmdi-chevron-down pull-right zmdi-hc-fw"></i></div>
+                        <ul class="list-unstyled">
+                            <li style="background-color: #e6373c;"><a href="newloan.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i>&nbsp;&nbsp; Nuevo Prestamo</a></li>
+                            <li style="background-color: #e6373c;"><a href="loan.html"><i class="zmdi zmdi-calendar zmdi-hc-fw"></i>&nbsp;&nbsp; Todos los préstamos</a></li>
+                            <li style="background-color: #e6373c;"><a href="loanpending.html"><i class="zmdi zmdi-time-restore zmdi-hc-fw"></i>&nbsp;&nbsp; Devoluciones pendientes <span class="label label-danger pull-right label-mhover">7</span></a>
                             </li>
                         </ul>
                     </li>
                     <li><a href="report.html"><i class="zmdi zmdi-trending-up zmdi-hc-fw"></i>&nbsp;&nbsp; Reportes y estadísticas</a></li>
-                    <li><a href="advancesettings.html"><i class="zmdi zmdi-wrench zmdi-hc-fw"></i>&nbsp;&nbsp; Configuraciones avanzadas</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="content-page-container full-reset custom-scroll-containers">
-        <nav class="navbar-user-top full-reset">
+        <nav class="navbar-user-top full-reset" style="background-color: #e6373c;">
             <ul class="list-unstyled full-reset">
                 <figure>
-                   <img src="assets/img/user01.png" alt="user-picture" class="img-responsive img-circle center-box">
+                   <img src="assets/img/OIP.jpeg" alt="user-picture" class="img-responsive img-circle center-box">
                 </figure>
                 <li style="color:#fff; cursor:default;">
-                    <span class="all-tittles">Admin Name</span>
+                    <span class="all-tittles">User Name</span>
                 </li>
                 <li  class="tooltips-general exit-system-button" data-href="index.html" data-placement="bottom" title="Salir del sistema">
                     <i class="zmdi zmdi-power"></i>
@@ -107,7 +109,6 @@
             <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
                 <li><a href="loan.html">Todos los préstamos</a></li>
                 <li class="active"><a href="loanpending.html">Devoluciones pendientes</a></li>
-                <li><a href="loanreservation.html">Reservaciones</a></li>
             </ul>
         </div>
         <div class="container-fluid"  style="margin: 50px 0;">
@@ -242,7 +243,7 @@
               </div>
             </div>
           </div>
-          <footer class="footer full-reset">
+          <footer class="footer full-reset" style="background-color: #e6373c;">
               <div class="container-fluid">
                   <div class="row">
                       <div class="col-xs-12 col-sm-6">
@@ -259,6 +260,6 @@
                   </div>
               </div>
           </footer>
-    </div>
-</body>
-</html>
+      </div>
+  </body>
+  </html>
