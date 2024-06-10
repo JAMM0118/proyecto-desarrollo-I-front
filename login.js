@@ -63,7 +63,7 @@ try {
     //Guardo el tipo de usuario
     // Redirige al usuario al dashboard
     if (isTrue) {
-      window.location.href = 'views/home.html';
+      window.location.href = '/views/home.html';
   
     }
 } catch (error) {

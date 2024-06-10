@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Docentes</title>
+    <title>Clientes</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="Shortcut Icon" type="image/x-icon" href="../../assets/icons/book.ico" />
@@ -139,32 +139,32 @@
                     <div class="row">
                        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Escribe aquí el número de Identificacion del cliente" pattern="[0-9-]{1,10}" required="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Solamente números sin puntos, 10 dígitos">
+                                <input id="identificacion" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el número de Identificacion del cliente" pattern="[0-9]{1,10}" required="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Solamente números sin puntos, 10 dígitos">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Número de Identificacion</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Escribe aquí El nombre completo del cliente" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" required="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el nombre completo del cliente, solamente letras">
+                                <input id="nombreCompleto" type="text" class="material-control tooltips-general" placeholder="Escribe aquí El nombre completo del cliente" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" required="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el nombre completo del cliente, solamente letras">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Nombre Completo</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general" placeholder="Escribe aquí el número de teléfono del Cliente" pattern="[0-9]{8,8}" required="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Solamente 10 números">
+                                <input id="telefono" type="text" class="material-control tooltips-general" placeholder="Escribe aquí el número de teléfono del Cliente" pattern="[0-9]{8,8}" required="" maxlength="10" data-toggle="tooltip" data-placement="top" title="Solamente 10 números">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Teléfono</label>
                             </div>
                             <div class="group-material">
-                                <input type="email" class="material-control tooltips-general" placeholder="E-mail"  maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el Email del Cliente">
+                                <input id="correo" type="email" class="material-control tooltips-general" placeholder="E-mail"  maxlength="50" data-toggle="tooltip" data-placement="top" title="Escribe el Email del Cliente">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Email</label>
                             </div>
                             <p class="text-center">
                                 <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                                <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                                <button id="guardarBtn" type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
                             </p> 
                         </div>
                     </div>
@@ -205,5 +205,6 @@
           </footer>
       </div>
       <script src="/js/nombreUsuarioActual.js"></script>
+      <script src="clients.js"></script>
   </body>
   </html>
