@@ -37,6 +37,8 @@ const cargarLibros = async() => {
 
 let libros = await cargarLibros();
 
+console.log(libros);
+
 libros.forEach(libro => {
     table.innerHTML += template(libro);
 })
