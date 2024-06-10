@@ -118,49 +118,49 @@
                             <legend><strong>Información básica</strong></legend><br>
                             
                             <div class="group-material">
-                                <input type="text" class="tooltips-general material-control" placeholder="Escribe aquí el código ISBN del libro" pattern="[0-9]{1,20}" required="" maxlength="20" data-toggle="tooltip" data-placement="top" title="Escribe el código ISBN del libro, solamente números">
+                                <input id="isbn" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el código ISBN del libro" pattern="[0-9]{1,20}" required="" maxlength="20" data-toggle="tooltip" data-placement="top" title="Escribe el código ISBN del libro, solamente números">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Código ISBN</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="tooltips-general material-control" placeholder="Escribe aquí el título o nombre del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el título o nombre del libro">
+                                <input id="title" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el título o nombre del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el título o nombre del libro">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Título</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="tooltips-general material-control" placeholder="Escribe aquí el autor del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del autor del libro">
+                                <input id="author" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el autor del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del autor del libro">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Autor</label>
                             </div>
                             <div class="group-material">
-                                <input type="date" class="material-control tooltips-general" placeholder="Escribe aquí la fecha del libro" required="" data-toggle="tooltip" data-placement="top" title="Selecciona la fecha del libro">
+                                <input id="date" type="date" class="material-control tooltips-general" placeholder="Escribe aquí la fecha del libro" required="" data-toggle="tooltip" data-placement="top" title="Selecciona la fecha del libro">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Fecha</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="tooltips-general material-control" placeholder="Escribe aquí el numero de paginas del libro" pattern="[0-9]{1,20}" required="" maxlength="4" data-toggle="tooltip" data-placement="top" title="Escribe numero de paginas, solamente números">
+                                <input id="pages" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el numero de paginas del libro" pattern="[0-9]{1,20}" required="" maxlength="4" data-toggle="tooltip" data-placement="top" title="Escribe numero de paginas, solamente números">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Numero de Paginas</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="tooltips-general material-control" placeholder="Escribe aquí el Genero del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del genero del libro">
+                                <input id="genre" type="text" class="tooltips-general material-control" placeholder="Escribe aquí el Genero del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe el nombre del genero del libro">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Genero</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="tooltips-general material-control" placeholder="Escribe aquí una descripcion del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe la descripcion del libro">
+                                <input id="description" type="text" class="tooltips-general material-control" placeholder="Escribe aquí una descripcion del libro" required="" maxlength="70" data-toggle="tooltip" data-placement="top" title="Escribe la descripcion del libro">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Descripcion</label>
                             </div>
                             <div class="group-material">
-                                <input type="text" class="material-control tooltips-general"  placeholder="Escribe aquí la cantidad de libros que registraras" required pattern="[0-9]{1,7}" maxlength="7" data-toggle="tooltip" data-placement="top" title="¿Cuántos libros registraras?">
+                                <input id="copies" type="text" class="material-control tooltips-general"  placeholder="Escribe aquí la cantidad de libros que registraras" required pattern="[0-9]{1,7}" maxlength="7" data-toggle="tooltip" data-placement="top" title="¿Cuántos libros registraras?">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Ejemplares</label>
@@ -207,5 +207,8 @@
               </div>
           </footer>
       </div>
+
+
+      <script src="book.js"></script>
   </body>
   </html>
