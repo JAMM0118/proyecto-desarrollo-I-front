@@ -1,8 +1,10 @@
 document.getElementById('miFormulario').addEventListener('submit', obtenerValue);
 document.addEventListener('DOMContentLoaded', mensajesPersonalizados);
 
+const url = 'https://proyecto-desarrollo-back-production.up.railway.app';
 
-function obtenerValue(event) {
+
+async function obtenerValue(event) {
   event.preventDefault();
 
   let isTrue = true;
@@ -10,9 +12,9 @@ function obtenerValue(event) {
   datosPassword = document.getElementById('con');
   datosTypeUser = document.getElementById('type-user');
   // errorTypeUser = document.getElementById('errorLista');
-  console.log("sirver");
-
+  
   // errorTypeUser.textContent = '';
+  
 
   if (datosName.value.trim() === '') { isTrue = false; }
   if (datosPassword.value.trim() === '') { isTrue = false; }
@@ -21,16 +23,61 @@ function obtenerValue(event) {
   console.log(datosName.value);
   console.log(datosPassword.value);
   console.log(datosTypeUser.value);
+  const datos = {
+    username: datosName.value,
+    password: datosPassword.value,
+};
 
-  if (isTrue) {
-    window.location.href = 'views/home.html';
+console.log(datos);
 
-  }
+
+try {
+    // Petición POST al backend
+    const response = await fetch(`${url}/auth/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    });
+    if (!response.ok) {
+        throw new Error('Error en la autenticación');
+    }
+
+    const data = await response.json();
+
+    // Asumiendo que el JWT está en data.token
+    const token = data.token;
+    
+    // Guarda el JWT en localStorage
+    localStorage.setItem('token', token);
+    //Guardo el  username
+    console.log(datos.username);
+    localStorage.setItem('username', datos.username);
+    console.log(localStorage.getItem('username'));
+
+
+
+    console.log(datos);
+
+    //Guardo el tipo de usuario
+    // Redirige al usuario al dashboard
+    if (isTrue) {
+      window.location.href = 'views/home.html';
+  
+    }
+} catch (error) {
+    console.error('Error:', error);
+    alert('Error en la autenticación. Por favor, intente de nuevo.');
+}
+
+  
 
   // else{
   //   errorTypeUser.textContent = 'Por favor llene todos los campos';
   // }
 }
+
 
 function mensajesPersonalizados() {
   datosName = document.getElementById('name');

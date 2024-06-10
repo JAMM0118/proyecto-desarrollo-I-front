@@ -82,10 +82,10 @@
         <nav class="navbar-user-top full-reset" style="background-color: #e6373c;">
             <ul class="list-unstyled full-reset">
                 <figure>
-                   <img src="../assets/img/OIP.jpeg" alt="user-picture" class="img-responsive img-circle center-box">
+                   <img src="../assets/img/72jR.gif" alt="user-picture" class="img-responsive img-circle center-box">
                 </figure>
                 <li style="color:#fff; cursor:default;">
-                    <span class="all-tittles">User Name</span>
+                    <span class="all-tittles" id="username">User Name</span>
                 </li>
                 <li  class="tooltips-general exit-system-button" data-href="../index.html" data-placement="bottom" title="Salir del sistema">
                     <i class="zmdi zmdi-power"></i>
@@ -107,42 +107,39 @@
             </div>
         </div>
         <section class="full-reset text-center" style="padding: 40px 0;">
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/admin/admin.html'" >
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-face"></i></div>
-                <div class="tile-name all-tittles">administradores</div>
+                <div class="tile-name all-tittles">administradores
+                </div>
                 <div class="tile-num full-reset">7</div>
+                
             </article>
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/clients/clients.html'">
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-male-alt"></i></div>
                 <div class="tile-name all-tittles">clientes</div>
                 <div class="tile-num full-reset">11</div>
             </article>
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/personal/personal.html'">
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-male-female"></i></div>
                 <div class="tile-name all-tittles" style="width: 90%;">personal administrativo</div>
                 <div class="tile-num full-reset">17</div>
             </article>
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/listbook/listbook.html'">
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-book"></i></div>
                 <div class="tile-name all-tittles">libros</div>
                 <div class="tile-num full-reset">77</div>
             </article>
-            <article class="tile">
-                <div class="tile-icon full-reset"><i class="zmdi zmdi-bookmark-outline"></i></div>
-                <div class="tile-name all-tittles">Generos</div>
-                <div class="tile-num full-reset">11</div>
-            </article>
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/loanpending/loanpending.html'">
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-time-restore"></i></div>
                 <div class="tile-name all-tittles" style="width: 90%;">devoluciones pendientes</div>
                 <div class="tile-num full-reset">9</div>
             </article>
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/loan/loan.html'">
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-calendar"></i></div>
                 <div class="tile-name all-tittles">préstamos</div>
                 <div class="tile-num full-reset">7</div>
             </article>
-            <article class="tile">
+            <article class="tile" onclick="window.location.href='/views/report/report.html'">
                 <div class="tile-icon full-reset"><i class="zmdi zmdi-trending-up"></i></div>
                 <div class="tile-name all-tittles" style="width: 90%;">reportes y estadísticas</div>
                 <div class="tile-num full-reset">&nbsp;</div>
@@ -185,5 +182,7 @@
             </div>
         </footer>
     </div>
+    
+    <script src="/js/nombreUsuarioActual.js"></script>
 </body>
 </html>
