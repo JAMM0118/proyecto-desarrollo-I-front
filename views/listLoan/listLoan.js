@@ -1,5 +1,6 @@
 const url = 'https://proyecto-desarrollo-back-production.up.railway.app/api/prestamos';
 const urlCliente = 'https://proyecto-desarrollo-back-production.up.railway.app/api/clientes';
+const urlLibro = 'https://proyecto-desarrollo-back-production.up.railway.app/api/libros';
 
 const table = document.querySelector('.table-responsive')
 
@@ -15,6 +16,19 @@ const cargarClientes = async() => {
     return array;
 }
 
+const cargarLibros = async() => {
+    console.log("cargando objetos");
+    const array = [];
+    // const res = await fetch('data.json');
+    const res = await fetch(urlLibro);
+    const data = await res.json();
+    data.forEach(libro => {
+        array.push(libro);
+    });
+    return array;
+}
+
+let libros = await cargarLibros();
 let clientes = await cargarClientes();
 
 function formatearFecha(fechaParaFormatear){
@@ -34,16 +48,23 @@ function template(prestamos){
     
     for (let i = 0; i < clientes.length; i++) {
         if(prestamos.clienteId == clientes[i].id){
-            return `<div class="div-table" style="margin:0 !important;">
-                        <div class="div-table-row div-table-row-list">
-                            <div class="div-table-cell" style="width: 6%;"># ${prestamos.id}</div>
-                            <div class="div-table-cell" style="width: 22%;">${prestamos.libroPrestadoId}</div>
-                            <div class="div-table-cell" style="width: 22%;">${clientes[i].nombreCompleto}</div>
-                            <div class="div-table-cell" style="width: 10%;">${formatearFecha(prestamos.fechaPrestamo)}</div>
-                            <div class="div-table-cell" style="width: 10%;">${formatearFecha(prestamos.fechaDevolucion)}</div>
-                            
-                        </div>
-                    </div>`
+            for(let j = 0; j < libros.length; j++){
+                if(prestamos.libroPrestadoId == libros[j].id){
+                    return `<div class="div-table" style="margin:0 !important;">
+                                <div class="div-table-row div-table-row-list">
+                                    <div class="div-table-cell" style="width: 6%;"># ${prestamos.id}</div>
+                                    <div class="div-table-cell" style="width: 10%;">${prestamos.libroPrestadoId}</div>
+                                    <div class="div-table-cell" style="width: 15%;">${libros[j].titulo}</div>
+                                    <div class="div-table-cell" style="width: 15%;">${clientes[i].identificacion}</div>
+                                    <div class="div-table-cell" style="width: 15%;">${clientes[i].nombreCompleto}</div>
+                                    <div class="div-table-cell" style="width: 10%;">${formatearFecha(prestamos.fechaPrestamo)}</div>
+                                    <div class="div-table-cell" style="width: 10%;">${formatearFecha(prestamos.fechaDevolucion)}</div>
+                    
+                    
+                                </div>
+                            </div>`
+                }
+            }
     }
    
     }

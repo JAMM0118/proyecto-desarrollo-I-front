@@ -35,8 +35,6 @@ const cargarClientes = async() => {
 
 let clientes = await cargarClientes();
 
-localStorage.setItem('numeroClientes', clientes.length);
-
 console.log(clientes);
 
 clientes.forEach(cliente => {

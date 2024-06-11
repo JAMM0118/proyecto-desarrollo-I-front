@@ -54,6 +54,7 @@ try {
     //Guardo el  username
     console.log(datos.username);
     localStorage.setItem('username', datos.username);
+    
     console.log(localStorage.getItem('username'));
     localStorage.setItem('homeElements','/views/home/homeElements.html');
 

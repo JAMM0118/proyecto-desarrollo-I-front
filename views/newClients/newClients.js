@@ -10,14 +10,12 @@ guardarBtn.addEventListener('click', async (event) => {
     event.preventDefault();
     
     //datos del formulario
-    const id = parseInt(localStorage.getItem('numeroClientes')) + 1;
     const nombreCompleto = document.getElementById('nombreCompleto').value;
     const identificacion = document.getElementById('identificacion').value;
     const telefono = document.getElementById('telefono').value;
     const email = document.getElementById('correo').value;
     //json pra enviar
     const data = {
-        id: id,
         identificacion: identificacion,
         nombreCompleto: nombreCompleto,
         numeroTelefono: telefono,
