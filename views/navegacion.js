@@ -1,264 +1,58 @@
-let homeELements = localStorage.getItem('homeElements');
-fetch(homeELements)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navegacion-page').innerHTML = data;
-            })
-            .catch(error => console.error('Error al cargar el archivo:', error));
+// Función para cargar contenido en el elemento 'navegacion-page'
+function loadContent(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            const container = document.getElementById('navegacion-page');
+            container.innerHTML = data;
+            executeScripts(container);
+        })
+        .catch(error => console.error('Error al cargar el archivo:', error));
+}
 
-
-document.getElementById('nav-report').addEventListener("click", function() {
-    fetch('/views/report/report.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navegacion-page').innerHTML = data;
-            })
-            .catch(error => console.error('Error al cargar el archivo:', error));
- });
-    
-
-document.getElementById('nav-home').addEventListener("click", function() {
-    fetch('/views//home/homeElements.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navegacion-page').innerHTML = data;
-            })
-            .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-
-document.getElementById('nav-personal').addEventListener("click", function() {
-    fetch('/views/personal/personal.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navegacion-page').innerHTML = data;
-            })
-            .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-
-document.getElementById('nav-clients').addEventListener("click", function() {
-    fetch('/views/clients/clients.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('navegacion-page').innerHTML = data;
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-// document.getElementById('nav-clientes').addEventListener("click", function() {
-//     window.parent.location.href = "/views/home.html";
-
-//     fetch('/views/clients/clients.html')
-//     .then(response => response.text())
-//     .then(data => {
-//         document.getElementById('navegacion-page').innerHTML = data;
-//     })
-//     .catch(error => console.error('Error al cargar el archivo:', error));
-// });
-
-// document.getElementById('nav-supervisores').addEventListener("click", function() {
-//     window.parent.location.href = "/views/home.html";
-
-//     fetch('/views/personal/personal.html')
-//     .then(response => response.text())
-//     .then(data => {
-//         document.getElementById('navegacion-page').innerHTML = data;
-//     })
-//     .catch(error => console.error('Error al cargar el archivo:', error));
-// });
-
-
-document.getElementById('nav-book').addEventListener("click", function() {
-    fetch('/views/book/book.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
+// Función para ejecutar scripts contenidos en el HTML cargado
+function executeScripts(container) {
+    const scripts = container.getElementsByTagName('script');
+    for (let i = 0; i < scripts.length; i++) {
+        const script = document.createElement('script');
+        script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
+        if (scripts[i].src) {
+            script.src = scripts[i].src;
+            document.head.appendChild(script);
+        } else {
+            script.text = scripts[i].innerHTML;
+            document.body.appendChild(script);
         }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
+    }
+}
+
+// Asignación de eventos a los elementos de navegación
+const navItems = {
+    'nav-home': '/views/home/homeElements.html',
+    'nav-newLoan': '/views/newLoan/newLoan.html',
+    'nav-newPersonal': '/views/newPersonal/newPersonal.html',
+    'nav-newClients': '/views/newClients/newClients.html',
+    'nav-newBook': '/views/newBook/newBook.html',
+    'nav-listLoan': '/views/listLoan/listLoan.html',
+    'nav-listBook': '/views/listBook/listBook.html',
+    'nav-listAdmin': '/views/listAdmin/listAdmin.html',
+    'nav-listPersonal': '/views/listPersonal/listPersonal.html',
+    'nav-listClients': '/views/listClients/listClients.html',
+    'nav-loanPending': '/views/loanPending/loanPending.html',
+    'nav-report': '/views/report/report.html',
+};
 
 
-document.getElementById('nav-listBook').addEventListener("click", function() {
-    fetch('/views/listbook/listbook.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
+// Cargar el contenido inicial desde localStorage
+const homeElements = localStorage.getItem('homeElements');
+if (homeElements) {
+    loadContent(homeElements);
+} else {
+    console.error('No se encontró homeElements en localStorage');
+}
 
-        // Extraer y ejecutar los scripts
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-
-
-document.getElementById('nav-listAdmin').addEventListener("click", function() {
-    fetch('/views/listadmin/listadmin.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-
-document.getElementById('nav-listPersonal').addEventListener("click", function() {
-    fetch('/views/listpersonal/listpersonal.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-
-document.getElementById('nav-listClients').addEventListener("click", function() {
-    fetch('/views/listclients/listclients.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-
-
-document.getElementById('nav-newloan').addEventListener("click", function() {
-    fetch('/views/newloan/newloan.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-document.getElementById('nav-loan').addEventListener("click", function() {
-    fetch('/views/loan/loan.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
-document.getElementById('nav-loanPending').addEventListener("click", function() {
-    fetch('/views/loanpending/loanpending.html')
-    .then(response => response.text())
-    .then(data => {
-        const container = document.getElementById('navegacion-page');
-        container.innerHTML = data;
-
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-            }
-        }
-    })
-    .catch(error => console.error('Error al cargar el archivo:', error));
-});
-
+// Asignar eventos de clic a todos los elementos de navegación
+for (const [id, url] of Object.entries(navItems)) {
+    document.getElementById(id).addEventListener('click', () => loadContent(url));
+}
 

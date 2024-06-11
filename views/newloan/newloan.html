@@ -5,20 +5,10 @@
     <title>Nuevo Prestamo</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="Shortcut Icon" type="image/x-icon" href="../../assets/icons/book.ico" />
-    <script src="../../js/sweet-alert.min.js"></script>
-    <link rel="stylesheet" href="../../css/sweet-alert.css">
     <link rel="stylesheet" href="../../css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="../../css/normalize.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../js/jquery-1.11.2.min.js"><\/script>')</script>
-    <script src="../../js/modernizr.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="../../js/main.js"></script>
 </head>
 
 <body>
@@ -50,54 +40,29 @@
                         <legend><strong>Información básica</strong></legend><br>
 
                         <div class="group-material">
-                            <input type="text" class="tooltips-general material-control"
-                                placeholder="Escribe aquí el la Identificacion del cliente" pattern="[0-9]{1,20}"
+                            <input id="identificacionCliente" type="text" class="tooltips-general material-control"
+                                placeholder="Escribe aquí el la Identificacion del cliente" 
                                 required="" maxlength="20" data-toggle="tooltip" data-placement="top"
-                                title="Escribe el código ISBN del libro, solamente números">
+                                title="Escribe el código ISBN del libro, solamente números" pattern="[0-9]{1,20}">
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label>ID Cliente</label>
+                            <label>Identificacion del Cliente</label>
                         </div>
 
                         <div class="group-material">
-                            <input type="text" class="tooltips-general material-control"
+                            <input id="idLibro" type="text" class="tooltips-general material-control"
                                 placeholder="Escribe aquí el ID del libro" pattern="[0-9]{1,20}" required=""
                                 maxlength="40" data-toggle="tooltip" data-placement="top"
                                 title="Escribe numero de paginas, solamente números">
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label>ID libro prestado</label>
+                            <label>ID del libro prestado</label>
                         </div>
-                        <div class="group-material">
-                            <input type="date" class="material-control tooltips-general"
-                                placeholder="Escribe aquí la fecha en que se realiza el prestamo" required=""
-                                data-toggle="tooltip" data-placement="top" title="Selecciona la fecha del libro">
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Fecha Prestamo</label>
-                        </div>
-                        <div class="group-material">
-                            <input type="date" class="material-control tooltips-general"
-                                placeholder="Escribe aquí la fecha limite de devolucion del libro" required=""
-                                data-toggle="tooltip" data-placement="top" title="Selecciona la fecha del libro">
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Fecha devolucion</label>
-                        </div>
-                        <div class="group-material">
-                            <input type="text" class="tooltips-general material-control"
-                                placeholder="Escribe aquí algun comentario importante del prestamo(estado del libro, dato importante del usuario, etc.)"
-                                required="" maxlength="70" data-toggle="tooltip" data-placement="top"
-                                title="Escribe la descripcion del libro">
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Comentario</label>
-                        </div>
-
+                        
                         <p class="text-center">
                             <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i
                                     class="zmdi zmdi-roller"></i> &nbsp;&nbsp; Limpiar</button>
-                            <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i>
+                            <button id="guardarBtn" type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i>
                                 &nbsp;&nbsp; Guardar</button>
                         </p>
                     </div>
@@ -105,7 +70,7 @@
             </div>
         </form>
     </div>
-
+    <script src="/views/newLoan/newLoan.js"></script>
 </body>
 
 </html>

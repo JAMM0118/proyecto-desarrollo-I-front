@@ -75,7 +75,7 @@
                                     placeholder="Escribe aquí El nombre completo del cliente"
                                     pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" required="" maxlength="50"
                                     data-toggle="tooltip" data-placement="top"
-                                    title="Escribe el nombre completo del cliente, solamente letras">
+                                    title="Escribe el nombre completo del cliente, solamente letras" >
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Nombre Completo</label>
@@ -92,7 +92,7 @@
                             <div class="group-material">
                                 <input id="correo" type="email" class="material-control tooltips-general"
                                     placeholder="E-mail" maxlength="50" data-toggle="tooltip" data-placement="top"
-                                    title="Escribe el Email del Cliente">
+                                    title="Escribe el Email del Cliente" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label>Email</label>
@@ -109,7 +109,7 @@
             </div>
         </div>
 
-    <script src="/views/clients/clients.js"></script>
+    <script src="/views/newClients/newClients.js"></script>
 </body>
 
 </html>
