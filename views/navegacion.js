@@ -42,10 +42,10 @@
         'nav-newClients': '/views/newClients/newClients.html',
         'nav-newBook': '/views/newBook/newBook.html',
         'nav-listLoan': '/views/listLoan/listLoan.html',
-        'nav-listBook': '/views/listBook/listBook.html',
-        'nav-listAdmin': '/views/listAdmin/listAdmin.html',
+        'nav-listBook': '/views/listbook/listbook.html',
+        'nav-listAdmin': '/views/listadmin/listadmin.html',
         'nav-listSupervisor': '/views/listSupervisor/listSupervisor.html',
-        'nav-listClients': '/views/listClients/listClients.html',
+        'nav-listClients': '/views/listclients/listclients.html',
         'nav-loanPending': '/views/loanPending/loanPending.html',
         'nav-report': '/views/report/report.html',
     };
