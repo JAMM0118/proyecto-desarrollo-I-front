@@ -1,6 +1,6 @@
 // Agregar libros
 
-const url = 'https://proyecto-desarrollo-back-production.up.railway.app/api/book';
+const url = 'https://proyecto-desarrollo-back-production.up.railway.app/api/libros';
 
 // Guardo el boton y el token
 const guardarBtn = document.getElementById('guardarBtn');
