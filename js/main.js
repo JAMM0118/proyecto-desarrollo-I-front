@@ -26,7 +26,7 @@ $(document).ready(function(){
             animation: "slide-from-top",
             closeOnConfirm: false 
         },function(){
-            window.location=LinkExitSystem; 
+            window.parent.location=LinkExitSystem; 
         });  
     });
     $('.search-book-button').click(function(e){

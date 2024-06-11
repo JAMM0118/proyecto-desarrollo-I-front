@@ -55,6 +55,7 @@ try {
     console.log(datos.username);
     localStorage.setItem('username', datos.username);
     console.log(localStorage.getItem('username'));
+    localStorage.setItem('homeElements','/views/home/homeElements.html');
 
 
 
@@ -63,7 +64,7 @@ try {
     //Guardo el tipo de usuario
     // Redirige al usuario al dashboard
     if (isTrue) {
-      window.location.href = '/views/home.html';
+      window.location.href = '/views/home/home.html';
   
     }
 } catch (error) {
