@@ -12,72 +12,75 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1 class="all-tittles">Sistema bibliotecario <small>Administración Usuarios</small></h1>
+    <di id="navegacionAdminSupervisorClientes">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="all-tittles">Sistema bibliotecario <small>Administración Usuarios</small></h1>
+            </div>
         </div>
-    </div>
 
-    <div class="conteiner-fluid">
-        <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
-            <li role="presentation"><a>Administradores</a></li>
-            <li role="presentation"><a>Supervisores</a></li>
-            <li role="presentation" class="active"><a>Clientes</a></li>
+        <div class="conteiner-fluid">
+            <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+                <li role="presentation" ><a id="nav-admin">Administradores</a></li>
+                <li role="presentation"><a id="nav-supervisor">Supervisores</a></li>
+                <li role="presentation" class="active"><a id="nav-client">Clientes</a></li>
 
-        </ul>
-    </div>
-    <div class="container-fluid" style="margin: 50px 0;">
-        <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-3">
-                <img src="../../assets/img/user02.png" alt="user" class="img-responsive center-box"
-                    style="max-width: 110px;">
-            </div>
-            <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                Bienvenido a la sección donde se encuentra el listado de Clientes registrados en el sistema, puedes
-                actualizar algunos datos de los Clientes o eliminar el registro completo del Cliente siempre y
-                cuando no tenga préstamos asociados.<br>
-                <strong class="text-danger"><i class="zmdi zmdi-alert-triangle"></i> &nbsp; ¡Importante! </strong>Si
-                eliminas el Cliente del sistema se borrarán todos los datos relacionados con él, incluyendo
-                préstamos y registros en la bitácora.
-            </div>
+            </ul>
         </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 lead">
-                <ol class="breadcrumb">
-                    <li class="active">listado de Clientes</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid" style="margin: 40px 0;">
-        <form class="pull-right" style="width: 30% !important;" autocomplete="off">
-            <div class="group-material">
-                <input type="search" style="display: inline-block !important; width: 70%;"
-                    class="material-control tooltips-general" placeholder="Buscar Cliente" required=""
-                    pattern="[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top"
-                    title="Escribe los nombres, sin los apellidos">
-                <button class="btn" style="margin: 0; height: 43px; background-color: transparent !important;">
-                    <i class="zmdi zmdi-search" style="font-size: 25px;"></i>
-                </button>
-            </div>
-        </form>
-        <h2 class="text-center all-tittles" style="clear: both; margin: 25px 0;">Listado de Clientes</h2>
-        <div class="table-responsive">
-            <div class="div-table" style="margin:0 !important;">
-                <div class="div-table-row div-table-row-list" style="background-color:#DFF0D8; font-weight:bold;">
-                    <div class="div-table-cell" style="width: 6%;">#</div>
-                    <div class="div-table-cell" style="width: 15%;">Numero Identificacion</div>
-                    <div class="div-table-cell" style="width: 15%;">Nombres</div>
-                    <div class="div-table-cell" style="width: 12%;">Teléfono</div>
-                    <div class="div-table-cell" style="width: 12%;">Email</div>
-                    <div class="div-table-cell" style="width: 9%;">Actualizar</div>
-                    <div class="div-table-cell" style="width: 9%;">Eliminar</div>
+        <div class="container-fluid" style="margin: 50px 0;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <img src="../../assets/img/user02.png" alt="user" class="img-responsive center-box"
+                        style="max-width: 110px;">
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+                    Bienvenido a la sección donde se encuentra el listado de Clientes registrados en el sistema, puedes
+                    actualizar algunos datos de los Clientes o eliminar el registro completo del Cliente siempre y
+                    cuando no tenga préstamos asociados.<br>
+                    <strong class="text-danger"><i class="zmdi zmdi-alert-triangle"></i> &nbsp; ¡Importante! </strong>Si
+                    eliminas el Cliente del sistema se borrarán todos los datos relacionados con él, incluyendo
+                    préstamos y registros en la bitácora.
                 </div>
             </div>
         </div>
-        <script src="/views/listclients/listClients.js" type="module"></script>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 lead">
+                    <ol class="breadcrumb">
+                        <li class="active">listado de Clientes</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" style="margin: 40px 0;">
+            <form class="pull-right" style="width: 30% !important;" autocomplete="off">
+                <div class="group-material">
+                    <input type="search" style="display: inline-block !important; width: 70%;"
+                        class="material-control tooltips-general" placeholder="Buscar Cliente" required=""
+                        pattern="[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top"
+                        title="Escribe los nombres, sin los apellidos">
+                    <button class="btn" style="margin: 0; height: 43px; background-color: transparent !important;">
+                        <i class="zmdi zmdi-search" style="font-size: 25px;"></i>
+                    </button>
+                </div>
+            </form>
+            <h2 class="text-center all-tittles" style="clear: both; margin: 25px 0;">Listado de Clientes</h2>
+            <div class="table-responsive">
+                <div class="div-table" style="margin:0 !important;">
+                    <div class="div-table-row div-table-row-list" style="background-color:#DFF0D8; font-weight:bold;">
+                        <div class="div-table-cell" style="width: 6%;">#</div>
+                        <div class="div-table-cell" style="width: 15%;">Numero Identificacion</div>
+                        <div class="div-table-cell" style="width: 15%;">Nombres</div>
+                        <div class="div-table-cell" style="width: 12%;">Teléfono</div>
+                        <div class="div-table-cell" style="width: 12%;">Email</div>
+                        <div class="div-table-cell" style="width: 9%;">Actualizar</div>
+                        <div class="div-table-cell" style="width: 9%;">Eliminar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="/views/listclients/listClients.js"></script>
 </body>
 
 </html>

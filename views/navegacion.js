@@ -36,22 +36,18 @@
 
     // Asignación de eventos a los elementos de navegación
     const navItems = {
-        'nav-home': '/views/home/homeElements.html',
+        'nav-home': '/views/home/homeElements/homeElements.html',
         'nav-newLoan': '/views/newloan/newloan.html',
-        'nav-newSupervisor': '/views/newSupervisor/newSupervisor.html',
-        'nav-newClients': '/views/newClients/newClients.html',
+        'nav-newSupervisorCliente': '/views/newSupervisor/newSupervisor.html',
         'nav-newBook': '/views/newBook/newBook.html',
-        'nav-listLoan': '/views/listLoan/listLoan.html',
+        'nav-listLoan-LoanPending': '/views/listLoan/listLoan.html',
         'nav-listBook': '/views/listbook/listbook.html',
-        'nav-listAdmin': '/views/listadmin/listadmin.html',
-        'nav-listSupervisor': '/views/listSupervisor/listSupervisor.html',
-        'nav-listClients': '/views/listclients/listclients.html',
-        'nav-loanPending': '/views/loanpending/loanpending.html',
+        'nav-listAdminSupervisorClientes': '/views/listadmin/listadmin.html',
         'nav-report': '/views/report/report.html',
     };
 
     // Cargar el contenido inicial desde localStorage
-    const homeElements = localStorage.getItem('homeElements');
+    let homeElements = localStorage.getItem('homeElements');
     if (homeElements) {
         loadContent(homeElements);
     } else {

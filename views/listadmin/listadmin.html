@@ -8,21 +8,22 @@
     <link rel="stylesheet" href="../../css/normalize.css">
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
-    
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1 class="all-tittles">Sistema bibliotecario <small>Administración Datos</small></h1>
+    <div id="navegacionAdminSupervisorClientes">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="all-tittles">Sistema bibliotecario <small>Administración Datos</small></h1>
+            </div>
         </div>
-    </div>
-        
+
         <div class="container-fluid">
             <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
-                <li role="presentation" class="active"><a>Administradores</a></li>
-                <li role="presentation"><a>Supervisores</a></li>
-                <li role="presentation"><a>Clientes</a></li>
+                <li role="presentation" class="active"><a id="nav-admin">Administradores</a></li>
+                <li role="presentation"><a id="nav-supervisor">Supervisores</a ></li>
+                <li role="presentation"><a id="nav-client">Clientes</a></li>
 
             </ul>
         </div>
@@ -48,33 +49,18 @@
         </div>
         <div class="container-fluid" style="margin: 40px 0;">
             <h2 class="text-center all-tittles">Lista de administradores</h2>
-            <div class="div-table">
+
+            <div class="div-table table-responsive">
                 <div class="div-table-row div-table-head">
                     <div class="div-table-cell">#</div>
                     <div class="div-table-cell">Nombre de usuario</div>
                     <div class="div-table-cell">Cambiar Contraseña</div>
-                    <div class="div-table-cell">Actualizar</div>
-                    <div class="div-table-cell">Eliminar</div>
-                </div>
-                <div class="div-table-row">
-                    <div class="div-table-cell">#</div>
-                    <div class="div-table-cell">Nombre de usuario</div>
-                    <div class="div-table-cell">
-                        <button type="submit" class="btn btn-info tooltips-general" data-toggle="tooltip"
-                            data-placement="top" title="Pulse para cambiar contraseña"><i
-                                class="zmdi zmdi-swap"></i></button>
-                    </div>
-                    <div class="div-table-cell">
-                        <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
-                    </div>
-                    <div class="div-table-cell">
-                        <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
-                    </div>
                 </div>
 
             </div>
         </div>
-    <!-- <script src="listAdmins.js"  type="module"></script> -->
+    </div>
+    <script src="/views/listadmin/listAdmin.js"></script>
 </body>
 
 </html>

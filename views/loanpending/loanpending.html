@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,25 +9,30 @@
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
+    <div id="navegacionLoanAndLoanPending">
         <div class="container">
             <div class="page-header">
-              <h1 class="all-tittles">Sistema bibliotecario <small>préstamos y reservaciones</small></h1>
+                <h1 class="all-tittles">Sistema bibliotecario <small>préstamos y reservaciones</small></h1>
             </div>
         </div>
         <div class="conteiner-fluid">
-            <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
-                <li><a >Todos los préstamos</a></li>
-                <li class="active"><a >Devoluciones pendientes</a></li>
+            <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
+                <li><a id="nav-loans">Todos los préstamos</a></li>
+                <li class="active"><a id="nav-loansPending">Devoluciones pendientes</a></li>
             </ul>
         </div>
-        <div class="container-fluid"  style="margin: 50px 0;">
+        <div class="container-fluid" style="margin: 50px 0;">
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
-                    <img src="../../assets/img/clock.png" alt="calendar" class="img-responsive center-box" style="max-width: 110px;">
+                    <img src="../../assets/img/clock.png" alt="calendar" class="img-responsive center-box"
+                        style="max-width: 110px;">
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                    Bienvenido a esta sección, aquí se muestran todos los préstamos de libros que no han sido devueltos por los docentes y estudiantes
+                    Bienvenido a esta sección, aquí se muestran todos los préstamos de libros que no han sido devueltos
+                    por
+                    los docentes y estudiantes
                 </div>
             </div>
         </div>
@@ -53,7 +59,9 @@
                         <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
                         <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
                         <div class="div-table-cell" style="width: 8%;">
-                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>                    </div>
+                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -65,7 +73,9 @@
                         <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
                         <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
                         <div class="div-table-cell" style="width: 8%;">
-                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>                    </div>
+                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -77,7 +87,9 @@
                         <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
                         <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
                         <div class="div-table-cell" style="width: 8%;">
-                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>                    </div>
+                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -89,7 +101,9 @@
                         <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
                         <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
                         <div class="div-table-cell" style="width: 8%;">
-                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>                    </div>
+                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="table-responsive">
@@ -101,11 +115,14 @@
                         <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
                         <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
                         <div class="div-table-cell" style="width: 8%;">
-                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>                        </div>
+                            <button class="btn btn-success"><i class="zmdi zmdi-time-restore"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-          
-  </body>
-  </html>
+    </div>
+    <script src="/views/loanpending/loanPending.js"></script>
+</body>
+
+</html>
