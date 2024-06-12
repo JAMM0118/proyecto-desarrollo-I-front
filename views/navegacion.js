@@ -38,7 +38,7 @@
     const navItems = {
         'nav-home': '/views/home/homeElements/homeElements.html',
         'nav-newLoan': '/views/newloan/newloan.html',
-        'nav-newSupervisorCliente': '/views/newSupervisor/newSupervisor.html',
+        'nav-newSupervisorCliente': '/views/newClients/newClients.html',
         'nav-newBook': '/views/newBook/newBook.html',
         'nav-listLoan-LoanPending': '/views/listLoan/listLoan.html',
         'nav-listBook': '/views/listbook/listbook.html',

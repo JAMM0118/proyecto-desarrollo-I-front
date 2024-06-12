@@ -47,6 +47,7 @@
     navSupervisor.addEventListener('click', async (event) => {
         event.preventDefault();
         loadContent('/views/newSupervisor/newSupervisor.html');
+
     });
    
 

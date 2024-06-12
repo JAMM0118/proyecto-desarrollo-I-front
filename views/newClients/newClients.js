@@ -46,7 +46,20 @@
     
     navSupervisor.addEventListener('click', async (event) => {
         event.preventDefault();
-        loadContent('/views/newSupervisor/newSupervisor.html');
+        if(localStorage.getItem('role') === 'ADMINISTRADOR'){
+            loadContent('/views/newSupervisor/newSupervisor.html');
+        }
+        else{
+            swal({
+                title: `Lo sentimos supervisor ${localStorage.getItem('username')}`,
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Cerrar",
+                confirmButtonColor: "#3598D9",
+                icon: 'info',
+                text: 'No tienes permisos para acceder a esta seccion'
+            });
+        }
     });
 
 

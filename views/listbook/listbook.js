@@ -19,7 +19,7 @@
                         <strong>${libro.fechaPublicacion}<br>
                     </div>
                     <p class="text-center pull-right">
-                        <a href="#!" class="btn btn-info btn-xs" style="margin-right: 10px;"><i class="zmdi zmdi-info-outline"></i> &nbsp;&nbsp; Más información</a>
+                        <a data-libro-id="${libro.id}" class="btn btn-info btn-xs" style="margin-right: 10px;"><i class="zmdi zmdi-info-outline"></i> &nbsp;&nbsp; Más información</a>
                     </p>
                 </div>
             </div>`
@@ -44,6 +44,39 @@
     libros.forEach(libro => {
         table.innerHTML += template(libro);
     })
+
+
+    const botonMasInformacion = document.querySelectorAll('.btn-info');
+    botonMasInformacion.forEach(boton => {
+        boton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const libroId = event.target.dataset.libroId;
+            const libro = libros.find(libro => libro.id == libroId);
+            console.log(libro);
+            swal({
+                title: "Informacion del libro",
+                icon: "info",
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Cerrar",
+                confirmButtonColor: "#3598D9",
+                html: true,
+                text: `<div style='text-align: left;'>
+                        <strong>ID:</strong> ${libro['id']}<br>
+                        <strong>ISBN:</strong> ${libro['isbn']}<br>
+                        <strong>Título:</strong> ${libro['titulo']}<br>
+                        <strong>Autor:</strong> ${libro['autor']}<br>
+                        <strong>Fecha de Publicación:</strong> ${libro['fechaPublicacion']}<br>
+                        <strong>Numero de paginas:</strong> ${libro['numeroPaginas']}<br>
+                        <strong>Genero:</strong> ${libro['genero']}<br>
+                        <strong>Descripcion:</strong> ${libro['descripcion']}<br>
+                        <strong>Copias Totales:</strong> ${libro['copiasTotales']}<br>
+                        <strong>Copias Disponibles:</strong> ${libro['copiasDisponibles']}<br>
+                        </div>`,
+                });
+            console.log("Hiciste clic en el botón 'Más información'" + libroId);
+        });
+    });
 
 
 })();
