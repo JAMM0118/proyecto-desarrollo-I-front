@@ -52,16 +52,11 @@ try {
     // Guarda el JWT en localStorage
     localStorage.setItem('token', token);
     //Guardo el  username
-    console.log(datos.username);
     localStorage.setItem('username', datos.username);
     
-    console.log(localStorage.getItem('username'));
-    localStorage.setItem('homeElements','/views/home/homeElements.html');
+    localStorage.setItem('homeElements','/views/home/homeElements/homeElements.html');
 
-
-
-    console.log(datos);
-
+   
     //Guardo el tipo de usuario
     // Redirige al usuario al dashboard
     if (isTrue) {

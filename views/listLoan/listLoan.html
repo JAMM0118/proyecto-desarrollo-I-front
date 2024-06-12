@@ -11,17 +11,17 @@
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="page-header">
-            <h1 class="all-tittles">Sistema bibliotecario <small>préstamos y reservaciones</small></h1>
+    <div id="navegacionLoanAndLoanPending">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="all-tittles">Sistema bibliotecario <small>préstamos y reservaciones</small></h1>
+            </div>
         </div>
-    </div>
 
         <div class="conteiner-fluid">
             <ul class="nav nav-tabs nav-justified" style="font-size: 17px;">
-                <li class="active"><a >Todos los préstamos</a></li>
-                <li><a href="../loanpending/loanpending.html">Devoluciones pendientes</a></li>
+                <li class="active" ><a id="nav-loans">Todos los préstamos</a></li>
+                <li><a id="nav-loansPending">Devoluciones pendientes</a></li>
             </ul>
         </div>
         <div class="container-fluid" style="margin: 50px 0;">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid"  style="margin: 40px 0;">
+        <div class="container-fluid" style="margin: 40px 0;">
             <h2 class="text-center all-tittles">Listado de préstamos</h2>
             <div class="table-responsive">
                 <div class="div-table" style="margin:0 !important;">
@@ -52,8 +52,8 @@
                 </div>
             </div>
         </div>
-
-    <script src="/views/listLoan/listLoan.js" type="module"></script>
+    </div>
+    <script src="/views/listLoan/listLoan.js"></script>
 </body>
 
 </html>
