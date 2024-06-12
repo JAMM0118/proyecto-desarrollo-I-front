@@ -12,63 +12,80 @@ async function obtenerValue(event) {
   datosPassword = document.getElementById('con');
   datosTypeUser = document.getElementById('type-user');
   // errorTypeUser = document.getElementById('errorLista');
-  
+
   // errorTypeUser.textContent = '';
-  
+
 
   if (datosName.value.trim() === '') { isTrue = false; }
   if (datosPassword.value.trim() === '') { isTrue = false; }
   if (datosTypeUser.value.trim() === '') { isTrue = false; }
 
-  console.log(datosName.value);
-  console.log(datosPassword.value);
-  console.log(datosTypeUser.value);
   const datos = {
     username: datosName.value,
     password: datosPassword.value,
-};
+  };
 
-console.log(datos);
+  console.log(datos);
 
 
-try {
+  try {
     // Petición POST al backend
     const response = await fetch(`${url}/auth/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datos)
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
     });
     if (!response.ok) {
-        throw new Error('Error en la autenticación');
+      throw new Error('Error en la autenticación');
     }
 
     const data = await response.json();
 
     // Asumiendo que el JWT está en data.token
     const token = data.token;
-    
+    const userType = data.userType;
     // Guarda el JWT en localStorage
     localStorage.setItem('token', token);
+    localStorage.setItem('role', userType);
     //Guardo el  username
     localStorage.setItem('username', datos.username);
-    
-    localStorage.setItem('homeElements','/views/home/homeElements/homeElements.html');
+    localStorage.setItem('homeElements', '/views/home/homeElements/homeElements.html');
 
-   
+
     //Guardo el tipo de usuario
     // Redirige al usuario al dashboard
-    if (isTrue) {
+    if (isTrue && userType === datosTypeUser.value) {
       window.location.href = '/views/home/home.html';
-  
     }
-} catch (error) {
-    console.error('Error:', error);
-    alert('Error en la autenticación. Por favor, intente de nuevo.');
-}
+    else {
+      swal({
+        title: "Error en el tipo de usuario",
+        closeOnConfirm: false,
+        animation: "slide-from-top",
+        confirmButtonText: "Cerrar",
+        confirmButtonColor: "#3598D9",
+        icon: 'info',
+        text: 'Por favor, seleccione el tipo correcto'
+      });
+    }
 
-  
+
+  } catch (error) {
+    console.error('Error:', error);
+    swal({
+      title: "Error en la autenticación",
+      icon: "info",
+      closeOnConfirm: false,
+      animation: "slide-from-top",
+      confirmButtonText: "Cerrar",
+      confirmButtonColor: "#3598D9",
+      text: 'Usuario o contraseña incorrecta. Por favor, intente de nuevo.'
+    });
+  }
+
+
 
   // else{
   //   errorTypeUser.textContent = 'Por favor llene todos los campos';

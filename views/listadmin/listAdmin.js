@@ -61,13 +61,8 @@
 
     function template(user) {
         return `<div class="div-table-row">
-                    <div class="div-table-cell"># ${user.id}</div>
-                    <div class="div-table-cell">${user.username}</div>
-                    <div class="div-table-cell">
-                        <button type="submit" class="btn btn-info tooltips-general" data-toggle="tooltip"
-                            data-placement="top" title="Pulse para cambiar contraseña"><i
-                                class="zmdi zmdi-swap"></i></button>
-                    </div>
+                    <div class="div-table-cell" style="width: 50%">${user.id}</div>
+                    <div class="div-table-cell" style="width: 50%">${user.username}</div>
                     
                 </div>`
     }
