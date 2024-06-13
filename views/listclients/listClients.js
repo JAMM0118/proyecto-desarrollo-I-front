@@ -1,76 +1,23 @@
 
 (async function () {
+
     const urlClient = 'https://proyecto-desarrollo-back-production.up.railway.app/api/clientes';
 
     const table = document.querySelector('.table-responsive')
-
-    const navAdmin = document.getElementById('nav-admin');
-    const navSupervisor = document.getElementById('nav-supervisor');
-    const navCliente = document.getElementById('nav-client');
-
-    async function loadContent(url) {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text();
-            })
-            .then(data => {
-                const container = document.getElementById('navegacionAdminSupervisorClientes');
-                container.innerHTML = data;
-                executeScripts(container);
-            })
-            .catch(error => console.error('Error al cargar el archivo:', error));
-    }
-
-    function executeScripts(container) {
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                script.onload = () => console.log(`Script ${script.src} cargado y ejecutado`);
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-                console.log('Script inline ejecutado');
-            }
-        }
-    }
-
-
-    navSupervisor.addEventListener('click', async (event) => {
-        event.preventDefault();
-        loadContent('/views/listSupervisor/listSupervisor.html');
-
-    });
-
-    navAdmin.addEventListener('click', async (event) => {
-        event.preventDefault();
-        loadContent('/views/listadmin/listadmin.html');
-    });
-
-    navCliente.addEventListener('click', async (event) => {
-        event.preventDefault();
-        loadContent('/views/listclients/listclients.html');
-    });
 
     function template(cliente) {
         return `<div class="div-table" style="margin:0 !important;">
                             <div class="div-table-row div-table-row-list">
                             <div class="div-table-cell" style="width: 6%;">${cliente.id}</div>
-                            <div class="div-table-cell" style="width: 15%;">${cliente.identificacion}</div>
-                            <div class="div-table-cell" style="width: 15%;">${cliente.nombreCompleto}</div>
-                            <div class="div-table-cell" style="width: 12%;">${cliente.numeroTelefono}</div>
+                            <div class="div-table-cell" style="width: 10%;">${cliente.identificacion}</div>
+                            <div class="div-table-cell" style="width: 10%;">${cliente.nombreCompleto}</div>
+                            <div class="div-table-cell" style="width: 8%;">${cliente.numeroTelefono}</div>
                             <div class="div-table-cell" style="width: 12%;">${cliente.correoElectronico}</div>
                                 <div class="div-table-cell" style="width: 9%;">
-                                    <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                                    <button data-cliente-id="${cliente.id}" class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
                                 </div>
                                 <div class="div-table-cell" style="width: 9%;">
-                                    <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                                    <button data-cliente-id="${cliente.id}" class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
                                 </div>
                             </div>
                         </div>`
@@ -95,5 +42,172 @@
     clientes.forEach(cliente => {
         table.innerHTML += template(cliente);
     })
+
+    const token = localStorage.getItem('token');
+
+    function reload() {
+        localStorage.setItem('homeElements', '/views/listclients/listclients.html');
+        window.location = '/views/home/home.html';
+    };
+
+    const botonActualizar = document.querySelectorAll('.btn-success');
+    botonActualizar.forEach(boton => {
+        boton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const clienteId = event.currentTarget.dataset.clienteId;
+            const cliente = clientes.find(cliente => cliente.id == clienteId);
+            console.log(cliente);
+
+            function showFormWithDefaults(nameValue, emailValue, cedulaValue, telefonoValue) {
+                Swal.fire({
+                    title: "Actualizar información del cliente",
+                    html:
+                        '<form id="form-swal" style="text-align: left;">' +
+                        '<label for="cedula" class="swal2-label">Identificacion:</label>' +
+                        '<input type="text" id="cedula" name="cedula" class="swal2-input">' +
+                        '<label for="name" class="swal2-label">Nombre Completo:</label>' +
+                        '<input type="text" id="name" name="name" class="swal2-input"><br>' +
+                        '<label for="telefono" class="swal2-label">Correo:</label>' +
+                        '<input type="text" id="telefono" name="telefono" class="swal2-input">' +
+                        '<label for="email" class="swal2-label">Telefono:</label>' +
+                        '<input type="email" id="email" name="email" class="swal2-input">' +
+                        '</form>',
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Enviar",
+                    confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
+                    cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
+                    focusConfirm: false, // Evita que el botón confirmar obtenga el foco
+                    preConfirm: () => {
+                        // Validación opcional o procesamiento antes de enviar
+                        const name = document.getElementById('name').value;
+                        const email = document.getElementById('email').value;
+                        const cedula = document.getElementById('cedula').value;
+                        const telefono = document.getElementById('telefono').value;
+                        console.log("Nombre:", name);
+                        console.log("Correo:", email);
+                        console.log("Cedula:", cedula);
+                        console.log("Telefono:", telefono);
+                        if (!name || !email || !cedula || !telefono) {
+                            Swal.showValidationMessage('Por favor, completa todos los campos');
+                            return false;
+                        }
+                        return { name: name, email: email, cedula: cedula, telefono: telefono };
+                    }
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+
+                       
+                        //json pra enviar
+                        const data = {
+                            identificacion: result.value.cedula,
+                            nombreCompleto: result.value.name,
+                            numeroTelefono: result.value.telefono,
+                            correoElectronico: result.value.email,
+                        }
+
+                        console.log(data);
+                        try {
+                            const response = await fetch(`https://proyecto-desarrollo-back-production.up.railway.app/api/clientes/${clienteId}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify(data)
+                            });
+
+                            if (!response.ok) {
+                                throw new Error('Error al modificar el cliente');
+                            };
+
+                            const responseData = await response.json();
+                            console.log(responseData);
+
+
+                            Swal.fire({
+                                title: "Datos enviados correctamente",
+                                text: `Nombre:${result.value.name}, Correo: ${result.value.email}, Cedula: ${result.value.cedula}, Telefono: ${result.value.telefono}`,
+                                icon: "success",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    reload();
+                                }
+                            });
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+
+
+                    }
+                });
+
+                // Asignar valores predeterminados después de crear el formulario
+                document.getElementById('name').value = nameValue;
+                document.getElementById('email').value = emailValue;
+                document.getElementById('cedula').value = cedulaValue;
+                document.getElementById('telefono').value = telefonoValue;
+
+            }
+
+            // Llamar a la función con valores predeterminados
+            showFormWithDefaults(cliente.nombreCompleto, cliente.correoElectronico, cliente.identificacion, cliente.numeroTelefono);
+            console.log("Hiciste clic en el botón 'Más información'" + clienteId);
+        });
+    });
+
+
+
+    const botonEliminar = document.querySelectorAll('.btn-danger');
+    botonEliminar.forEach(boton => {
+        boton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const clienteId = event.currentTarget.dataset.clienteId;
+            const cliente = clientes.find(cliente => cliente.id == clienteId);
+            console.log(cliente);
+            const data = {
+                id: cliente.id,
+            }
+
+            console.log(data);
+
+            Swal.fire({
+                icon: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Confirmar",
+                confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
+                cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
+                focusConfirm: false, // Evita que el botón confirmar obtenga el foco
+                title: `¿Estás seguro de eliminar este cliente?`
+
+            }).then(async(result) => {
+                if (result.isConfirmed) {
+                    try {
+                        const response = await fetch(`https://proyecto-desarrollo-back-production.up.railway.app/api/clientes/${clienteId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Error al eliminar el cliente');
+                        };
+                        reload();
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
+
+
+
+            console.log("Hiciste clic en el botón 'Más información'" + clienteId);
+        });
+    });
 })();
 

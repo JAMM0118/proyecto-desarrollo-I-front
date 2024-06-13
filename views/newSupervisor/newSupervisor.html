@@ -54,29 +54,21 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
                         <div class="group-material">
-                            <input type="text" class="material-control tooltips-general input-check-user"
+                            <input type="text" id="userNameSupervisor" class="material-control tooltips-general input-check-user"
                                 placeholder="Nombre de usuario" required="" maxlength="20"
-                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,20}" data-toggle="tooltip" data-placement="top"
+                                 data-toggle="tooltip" data-placement="top"
                                 title="Escribe un nombre de usuario sin espacios, que servira para iniciar sesión">
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label>Nombre de usuario</label>
                         </div>
                         <div class="group-material">
-                            <input type="password" class="material-control tooltips-general" placeholder="Contraseña"
+                            <input type="password" id="password" class="material-control tooltips-general" placeholder="Contraseña"
                                 required="" maxlength="200" data-toggle="tooltip" data-placement="top"
                                 title="Escribe una contraseña">
                             <span class="highlight"></span>
                             <span class="bar"></span>
                             <label>Contraseña</label>
-                        </div>
-                        <div class="group-material">
-                            <input type="password" class="material-control tooltips-general"
-                                placeholder="Repite la contraseña" required="" maxlength="200" data-toggle="tooltip"
-                                data-placement="top" title="Repite la contraseña">
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Repetir contraseña</label>
                         </div>
                         <p class="text-center">
                             <button type="reset" class="btn btn-info" style="margin-right: 20px;"><i
@@ -90,8 +82,9 @@
         </div>
     </div>
 </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/views/newSupervisor/newSupervisor.js"></script>
+    <script src="/views/navegacionNewRegisters.js"></script>
 </body>
 
 </html>

@@ -28,6 +28,14 @@
         let clientes = await cargarClientes();
         var identificacionCliente = document.getElementById('identificacionCliente').value;
         const idLibro = document.getElementById('idLibro').value;
+        if(identificacionCliente === '' || idLibro === ''){
+            Swal.fire({
+                title: "Por favor llena todos los campos!",
+                icon: "error",
+            });
+            return;
+        }
+
 
         for (let i = 0; i < clientes.length; i++) {
             if (identificacionCliente == clientes[i].identificacion) {
@@ -58,6 +66,13 @@
 
             const responseData = await response.json();
             console.log(responseData);
+            Swal.fire({
+                title: "Enviado!",
+                text: "Tu formulario ha sido enviado correctamente.",
+                icon: "success",
+            });
+
+           
             limpiarCampos();
         } catch (error) {
             console.log(error);

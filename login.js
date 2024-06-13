@@ -66,7 +66,7 @@ async function obtenerValue(event) {
         animation: "slide-from-top",
         confirmButtonText: "Cerrar",
         confirmButtonColor: "#3598D9",
-        icon: 'info',
+        type: 'error',
         text: 'Por favor, seleccione el tipo correcto'
       });
     }
@@ -76,7 +76,7 @@ async function obtenerValue(event) {
     console.error('Error:', error);
     swal({
       title: "Error en la autenticación",
-      icon: "info",
+      type: "error",
       closeOnConfirm: false,
       animation: "slide-from-top",
       confirmButtonText: "Cerrar",
@@ -86,10 +86,6 @@ async function obtenerValue(event) {
   }
 
 
-
-  // else{
-  //   errorTypeUser.textContent = 'Por favor llene todos los campos';
-  // }
 }
 
 

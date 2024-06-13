@@ -53,6 +53,7 @@
     } else {
         loadContent(navItems['nav-home']);
     }
+    localStorage.setItem('homeElements', '/views/home/homeElements/homeElements.html');
 
     // Asignar eventos de clic a todos los elementos de navegación
     for (const [id, url] of Object.entries(navItems)) {
