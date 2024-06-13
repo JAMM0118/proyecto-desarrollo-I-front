@@ -103,13 +103,14 @@
                         return `<div class="div-table" style="margin:0 !important;">
                                     <div class="div-table-row div-table-row-list">
                                         <div class="div-table-cell" style="width: 6%;">${prestamos.id}</div>
-                                        <div class="div-table-cell" style="width: 10%;">${prestamos.libroPrestadoId}</div>
-                                        <div class="div-table-cell" style="width: 15%;">${libros[j].titulo}</div>
-                                        <div class="div-table-cell" style="width: 15%;">${clientes[i].identificacion}</div>
-                                        <div class="div-table-cell" style="width: 15%;">${clientes[i].nombreCompleto}</div>
-                                        <div class="div-table-cell" style="width: 10%;">${formatearFecha(prestamos.fechaPrestamo)}</div>
-                                        <div class="div-table-cell" style="width: 10%;">${formatearFecha(prestamos.fechaDevolucion)}</div>
-                                        <div class="div-table-cell" style="width: 15%;">${prestamos.estado}</div>
+                                        <div class="div-table-cell" style="width: 8%;">${prestamos.libroPrestadoId}</div>
+                                        <div class="div-table-cell" style="width: 10%;">${libros[j].titulo}</div>
+                                        <div class="div-table-cell" style="width: 10%;">${clientes[i].identificacion}</div>
+                                        <div class="div-table-cell" style="width: 10%;">${clientes[i].nombreCompleto}</div>
+                                        <div class="div-table-cell" style="width: 8%;">${formatearFecha(prestamos.fechaPrestamo)}</div>
+                                        <div class="div-table-cell" style="width: 8%;">${formatearFecha(prestamos.fechaDevolucion)}</div>
+                                        <div class="div-table-cell" style="width: 10%;">${prestamos.valorMulta}</div>
+                                        <div class="div-table-cell" style="width: 10%;">${prestamos.estado}</div>
                         
                         
                                     </div>
@@ -138,9 +139,6 @@
     }
 
     let prestamos = await cargarPrestamos();
-
-    localStorage.setItem('numeroPrestamos', prestamos.length);
-
     console.log(prestamos);
 
     prestamos.forEach(prestamo => {

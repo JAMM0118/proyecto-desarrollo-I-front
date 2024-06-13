@@ -6,6 +6,7 @@
         'clientValue': 'https://proyecto-desarrollo-back-production.up.railway.app/api/clientes',
         'bookValue': 'https://proyecto-desarrollo-back-production.up.railway.app/api/libros',
         'loanValue': 'https://proyecto-desarrollo-back-production.up.railway.app/api/prestamos',
+        'loanPendingValue': 'https://proyecto-desarrollo-back-production.up.railway.app/api/prestamos',
     };
 
     for (const [id, url] of Object.entries(links)) {
@@ -16,7 +17,11 @@
             console.log(data);
             
             navElement.textContent = data.length != null ? data.length : 0;
-            
+            if(id == 'loanPendingValue') {
+                navElement.textContent = data.filter(estadoLoan => estadoLoan.estado === "PENDIENTE").length;
+                console.log(data);
+            }
+
             if(id == 'adminValue') {
                 navElement.textContent = data.filter(user => user.rol === "ADMINISTRADOR").length;
                 console.log(data);

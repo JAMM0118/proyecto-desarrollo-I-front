@@ -50,7 +50,7 @@
     botonMasInformacion.forEach(boton => {
         boton.addEventListener('click', (event) => {
             event.preventDefault();
-            const libroId = event.target.dataset.libroId;
+            const libroId = event.currentTarget.dataset.libroId;
             const libro = libros.find(libro => libro.id == libroId);
             console.log(libro);
             swal({
