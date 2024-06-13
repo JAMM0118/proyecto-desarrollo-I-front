@@ -15,19 +15,24 @@ $(document).ready(function(){
     $('.exit-system-button').on('click', function(e){
         e.preventDefault();
         var LinkExitSystem=$(this).attr("data-href");
-        swal({
+        Swal.fire({
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: "No, cancelar",
+            confirmButtonText: "Si, salir",
+            confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
+            cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
+            focusConfirm: false, // Evita que el botón confirmar obtenga el foco
             title: "¿Estás seguro?",
             text: "Quieres salir del sistema y cerrar la sesión actual",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#5cb85c",
-            confirmButtonText: "Si, salir",
-            cancelButtonText: "No, cancelar",
-            animation: "slide-from-top",
-            closeOnConfirm: false 
-        },function(){
-            window.parent.location=LinkExitSystem; 
-        });  
+            
+        }).then((result) => {
+            if(result.isConfirmed){
+
+                window.parent.location=LinkExitSystem; 
+            }
+        });
+        
     });
     $('.search-book-button').click(function(e){
         e.preventDefault();

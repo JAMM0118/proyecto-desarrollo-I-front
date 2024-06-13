@@ -24,14 +24,10 @@
         if(isbn === '' || titulo === '' || author === '' || fechaPublicacion === '' ||
             numeroPaginas === '' || genero === '' || descripcion === '' || copiasTotales === '' 
             || copiasDisponibles === ''){
-            swal({
-                title: "Por favor llena todos los campos!",
-                type: "error",
-                closeOnConfirm: false,
-                animation: "slide-from-top",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#3598D9",
-            });
+            Swal.fire({
+                    title: "Por favor llena todos los campos!",
+                    icon: "error",
+                });
             return;
         }
         //json pra enviar
@@ -64,14 +60,10 @@
             const responseData = await response.json();
             console.log(responseData);
 
-            swal({
+            Swal.fire({
                 title: "Enviado!",
                 text: "Tu formulario ha sido enviado correctamente.",
-                type: "success",
-                closeOnConfirm: false,
-                animation: "slide-from-top",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#3598D9",
+                icon: "success",
             });
 
             limpiarCampos();

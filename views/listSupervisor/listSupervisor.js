@@ -4,70 +4,17 @@
     const urlSupervisor = 'https://proyecto-desarrollo-back-production.up.railway.app/api/users';
 
     const table = document.querySelector('.table-responsive')
-    const navAdmin = document.getElementById('nav-admin');
-    const navSupervisor = document.getElementById('nav-supervisor');
-    const navCliente = document.getElementById('nav-client');
-
-    async function loadContent(url) {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text();
-            })
-            .then(data => {
-                const container = document.getElementById('navegacionAdminSupervisorClientes');
-                container.innerHTML = data;
-                executeScripts(container);
-            })
-            .catch(error => console.error('Error al cargar el archivo:', error));
-    }
-
-    function executeScripts(container) {
-        const scripts = container.getElementsByTagName('script');
-        for (let i = 0; i < scripts.length; i++) {
-            const script = document.createElement('script');
-            script.type = scripts[i].type ? scripts[i].type : 'text/javascript';
-            if (scripts[i].src) {
-                script.src = scripts[i].src;
-                script.onload = () => console.log(`Script ${script.src} cargado y ejecutado`);
-                document.head.appendChild(script);
-            } else {
-                script.text = scripts[i].innerHTML;
-                document.body.appendChild(script);
-                console.log('Script inline ejecutado');
-            }
-        }
-    }
-
-
-    navSupervisor.addEventListener('click', async (event) => {
-        event.preventDefault();
-        loadContent('/views/listSupervisor/listSupervisor.html');
-
-    });
-
-    navAdmin.addEventListener('click', async (event) => {
-        event.preventDefault();
-        loadContent('/views/listadmin/listadmin.html');
-    });
-
-    navCliente.addEventListener('click', async (event) => {
-        event.preventDefault();
-        loadContent('/views/listclients/listclients.html');
-    });
-
+    
     function template(user) {
         return `<div class="div-table" style="margin:0 !important;">
                         <div class="div-table-row div-table-row-list">
                             <div class="div-table-cell" style="width: 6%;">${user.id}</div>
                             <div class="div-table-cell" style="width: 15%;">${user.username}</div>
                             <div class="div-table-cell" style="width: 9%;">
-                                <button class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
+                                <button data-supervisor-id="${user.id}" class="btn btn-success"><i class="zmdi zmdi-refresh"></i></button>
                             </div>
                             <div class="div-table-cell" style="width: 9%;">
-                                <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                                <button data-supervisor-id="${user.id}" class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
                             </div>
                         </div>
                     </div>`
@@ -97,5 +44,156 @@
 
     supervisores.forEach(supervisor => {
         table.innerHTML += template(supervisor);
-    })
+    });
+
+    const token = localStorage.getItem('token');
+            
+
+    function reload() {
+        localStorage.setItem('homeElements', '/views/listSupervisor/listSupervisor.html');
+        window.location = '/views/home/home.html';
+    };
+
+    const botonActualizar = document.querySelectorAll('.btn-success');
+    botonActualizar.forEach(boton => {
+        boton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const supervisorId = event.currentTarget.dataset.supervisorId;
+            const supervisor = supervisores.find(supervisor => supervisor.id == supervisorId);
+            console.log(supervisor);
+
+            function showFormWithDefaults(newUserNameValue) {
+                Swal.fire({
+                    title: "Actualizar username del supervisor",
+                    html:
+                        '<form id="form-swal" style="text-align: left;">' +
+                        '<label for="newUserName" class="swal2-label">Username:</label>' +
+                        '<input type="text" id="newUserName" name="newUserName" class="swal2-input">' +
+                        '</form>',
+                    showCancelButton: true,
+                    cancelButtonText: "Cancelar",
+                    confirmButtonText: "Enviar",
+                    confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
+                    cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
+                    focusConfirm: false, // Evita que el botón confirmar obtenga el foco
+                    preConfirm: () => {
+                        // Validación opcional o procesamiento antes de enviar
+                        const newUserName = document.getElementById('newUserName').value;
+                        console.log("Nombre:", newUserName);
+                        if (!newUserName) {
+                            Swal.showValidationMessage('Por favor, completa todos los campos');
+                            return false;
+                        }
+                        return { newUserName: newUserName };
+                    }
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+
+                     
+                        //json pra enviar
+                        const data = {
+                            id: supervisor.id,
+                            username: result.value.newUserName,
+                        }
+
+                        console.log(data);
+                        try {
+                            const response = await fetch(urlSupervisor, {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify(data)
+                            });
+
+                            if (!response.ok) {
+                                throw new Error('Error al modificar el supervisor');
+                            };
+
+                            const responseData = await response.json();
+                            console.log(responseData);
+
+
+                            Swal.fire({
+                                title: "Datos enviados correctamente",
+                                text: `Nombre:${result.value.newUserName}`,
+                                icon: "success",
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    reload();
+                                }
+                            });
+
+                        } catch (error) {
+                            console.log(error);
+                        }
+
+
+                    }
+                });
+
+                // Asignar valores predeterminados después de crear el formulario
+                document.getElementById('newUserName').value = newUserNameValue;
+
+            }
+
+            // Llamar a la función con valores predeterminados
+            showFormWithDefaults(supervisor.username);
+            console.log("Hiciste clic en el botón 'Más información'" + supervisorId);
+        });
+    });
+
+
+
+    const botonEliminar = document.querySelectorAll('.btn-danger');
+    botonEliminar.forEach(boton => {
+        boton.addEventListener('click', (event) => {
+            event.preventDefault();
+            const supervisorId = event.currentTarget.dataset.supervisorId;
+            const supervisor = supervisores.find(supervisor => supervisor.id == supervisorId);
+            console.log(supervisor);
+            const data = {
+                id: supervisor.id,
+            }
+
+            console.log(data);
+
+            Swal.fire({
+                icon: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonText: "Confirmar",
+                confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
+                cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
+                focusConfirm: false, // Evita que el botón confirmar obtenga el foco
+                title: `¿Estás seguro de eliminar este supervisor?`
+
+            }).then(async(result) => {
+                if (result.isConfirmed) {
+                    try {
+                        const response = await fetch(`${urlSupervisor}/${supervisorId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Error al eliminar el supervisor');
+                        };
+                        reload();
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+            });
+
+
+
+            console.log("Hiciste clic en el botón 'Más información'" + supervisorId);
+        });
+    });
 })();

@@ -24,13 +24,36 @@
                         style="max-width: 110px;">
                 </div>
                 <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-                    Bienvenido al inventario de libros, si deseas buscar un libro por autor o título has click en el
-                    icono &nbsp; <i class="zmdi zmdi-search"></i> &nbsp; que se encuentra en la barra superior
+                    Bienvenido al inventario de libros, si deseas buscar un libro por id del libro escribelo en el buscador  &nbsp; <i class="zmdi zmdi-search"></i> &nbsp; que se encuentra mas abajo de este mensaje
                 </div>
             </div>
+            <div class="container-fluid" style="margin-top: 10px ;">
+                <div class="row">
+                    <div class="col-xs-12 lead">
+                        <ol class="breadcrumb">
+                            <li class="active">Listado de libros</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="pull-right" style="width: 30% !important;" autocomplete="off">
+                <div class="group-material">
+                    <input type="search" style="display: inline-block !important; width: 70%;"
+                        class="material-control tooltips-general" placeholder="Buscar libro por id" required=""
+                        pattern="[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top"
+                        title="Escribe los nombres, sin los apellidos">
+                    <button class="btn" style="margin: 0; height: 43px; background-color: transparent !important;">
+                        <i class="zmdi zmdi-search" style="font-size: 25px;"></i>
+                    </button>
+                </div>
+            </form>
+            <h2 class="text-center all-tittles" style="clear: both; margin: 25px 0;">Listado de libros</h2>
+            
         </div>
     
     <script src="/views/listbook/listbook.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>

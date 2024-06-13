@@ -29,13 +29,9 @@
         var identificacionCliente = document.getElementById('identificacionCliente').value;
         const idLibro = document.getElementById('idLibro').value;
         if(identificacionCliente === '' || idLibro === ''){
-            swal({
+            Swal.fire({
                 title: "Por favor llena todos los campos!",
-                type: "error",
-                closeOnConfirm: false,
-                animation: "slide-from-top",
-                confirmButtonText: "Ok",
-                confirmButtonColor: "#3598D9",
+                icon: "error",
             });
             return;
         }
@@ -70,17 +66,13 @@
 
             const responseData = await response.json();
             console.log(responseData);
+            Swal.fire({
+                title: "Enviado!",
+                text: "Tu formulario ha sido enviado correctamente.",
+                icon: "success",
+            });
 
-            swal({
-                    title: "Enviado!",
-                    text: "Tu formulario ha sido enviado correctamente.",
-                    type: "success",
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
-                    confirmButtonText: "Ok",
-                    confirmButtonColor: "#3598D9",
-                });
-
+           
             limpiarCampos();
         } catch (error) {
             console.log(error);
