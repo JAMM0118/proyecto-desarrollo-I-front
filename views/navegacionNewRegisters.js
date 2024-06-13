@@ -48,15 +48,14 @@
                 loadContent('/views/newSupervisor/newSupervisor.html');
             }
             else{
-                swal({
+                Swal.fire({
                     title: `Lo sentimos supervisor ${localStorage.getItem('username')}`,
-                    closeOnConfirm: false,
-                    animation: "slide-from-top",
+                    icon: "info",
                     confirmButtonText: "Cerrar",
-                    confirmButtonColor: "#3598D9",
-                    type: 'info',
                     text: 'No tienes permisos para acceder a esta seccion'
-                });
+                })
+                
+              
             }
         });
     
