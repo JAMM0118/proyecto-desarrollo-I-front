@@ -4,7 +4,7 @@
     const urlSupervisor = 'https://proyecto-desarrollo-back-production.up.railway.app/api/users';
 
     const table = document.querySelector('.table-responsive')
-    
+
     function template(user) {
         return `<div class="div-table" style="margin:0 !important;">
                         <div class="div-table-row div-table-row-list">
@@ -47,11 +47,10 @@
     });
 
     const token = localStorage.getItem('token');
-            
+
 
     function reload() {
-        localStorage.setItem('homeElements', '/views/listSupervisor/listSupervisor.html');
-        window.location = '/views/home/home.html';
+        window.location = 'index.html';
     };
 
     const botonActualizar = document.querySelectorAll('.btn-success');
@@ -63,75 +62,86 @@
             console.log(supervisor);
 
             function showFormWithDefaults(newUserNameValue) {
-                Swal.fire({
-                    title: "Actualizar username del supervisor",
-                    html:
-                        '<form id="form-swal" style="text-align: left;">' +
-                        '<label for="newUserName" class="swal2-label">Username:</label>' +
-                        '<input type="text" id="newUserName" name="newUserName" class="swal2-input">' +
-                        '</form>',
-                    showCancelButton: true,
-                    cancelButtonText: "Cancelar",
-                    confirmButtonText: "Enviar",
-                    confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
-                    cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
-                    focusConfirm: false, // Evita que el botón confirmar obtenga el foco
-                    preConfirm: () => {
-                        // Validación opcional o procesamiento antes de enviar
-                        const newUserName = document.getElementById('newUserName').value;
-                        console.log("Nombre:", newUserName);
-                        if (!newUserName) {
-                            Swal.showValidationMessage('Por favor, completa todos los campos');
-                            return false;
+                if (("SUPERVISOR" == localStorage.getItem('role')) && (supervisor.username != localStorage.getItem('username'))) {
+                    Swal.fire({
+                        title: "No puedes modificar un username diferente al tuyo",
+                        icon: "error",
+                    });
+                    return;
+                }
+                else {
+                    Swal.fire({
+                        title: "Actualizar username del supervisor",
+                        html:
+                            '<form id="form-swal" style="text-align: left;">' +
+                            '<label for="newUserName" class="swal2-label">Username:</label>' +
+                            '<input type="text" id="newUserName" name="newUserName" class="swal2-input">' +
+                            '</form>',
+                        showCancelButton: true,
+                        cancelButtonText: "Cancelar",
+                        confirmButtonText: "Enviar",
+                        confirmButtonColor: "#3598D9", // Color de fondo del botón confirmar
+                        cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
+                        focusConfirm: false, // Evita que el botón confirmar obtenga el foco
+                        preConfirm: () => {
+                            // Validación opcional o procesamiento antes de enviar
+                            const newUserName = document.getElementById('newUserName').value;
+                            console.log("Nombre:", newUserName);
+                            if (!newUserName) {
+                                Swal.showValidationMessage('Por favor, completa todos los campos');
+                                return false;
+                            }
+                            return { newUserName: newUserName };
                         }
-                        return { newUserName: newUserName };
-                    }
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
 
-                     
-                        //json pra enviar
-                        const data = {
-                            id: supervisor.id,
-                            username: result.value.newUserName,
+
+                            //json pra enviar
+                            const data = {
+                                id: supervisor.id,
+                                username: result.value.newUserName,
+                            }
+
+                            console.log(data);
+
+
+                            try {
+                                const response = await fetch(urlSupervisor, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': `Bearer ${token}`
+                                    },
+                                    body: JSON.stringify(data)
+                                });
+
+                                if (!response.ok) {
+                                    throw new Error('Error al modificar el supervisor');
+                                };
+
+                                const responseData = await response.json();
+                                console.log(responseData);
+
+
+                                Swal.fire({
+                                    title: "Datos enviados correctamente",
+                                    text: "Ahora te redirigiremos a la página de login para que se hagan efectivos los cambios",
+                                    icon: "success",
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        reload();
+                                    }
+                                });
+
+                            } catch (error) {
+                                console.log(error);
+                            }
                         }
-
-                        console.log(data);
-                        try {
-                            const response = await fetch(urlSupervisor, {
-                                method: 'PUT',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': `Bearer ${token}`
-                                },
-                                body: JSON.stringify(data)
-                            });
-
-                            if (!response.ok) {
-                                throw new Error('Error al modificar el supervisor');
-                            };
-
-                            const responseData = await response.json();
-                            console.log(responseData);
+                    });
 
 
-                            Swal.fire({
-                                title: "Datos enviados correctamente",
-                                text: `Nombre:${result.value.newUserName}`,
-                                icon: "success",
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    reload();
-                                }
-                            });
-
-                        } catch (error) {
-                            console.log(error);
-                        }
-
-
-                    }
-                });
+                }
 
                 // Asignar valores predeterminados después de crear el formulario
                 document.getElementById('newUserName').value = newUserNameValue;
@@ -169,7 +179,7 @@
                 focusConfirm: false, // Evita que el botón confirmar obtenga el foco
                 title: `¿Estás seguro de eliminar este supervisor?`
 
-            }).then(async(result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
                     try {
                         const response = await fetch(`${urlSupervisor}/${supervisorId}`, {

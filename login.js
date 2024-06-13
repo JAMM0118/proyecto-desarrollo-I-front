@@ -52,7 +52,7 @@ async function obtenerValue(event) {
     //Guardo el  username
     localStorage.setItem('username', datos.username);
     localStorage.setItem('homeElements', '/views/home/homeElements/homeElements.html');
-
+   
 
     //Guardo el tipo de usuario
     // Redirige al usuario al dashboard

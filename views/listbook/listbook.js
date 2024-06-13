@@ -141,17 +141,12 @@
                         const titulo = document.getElementById('title').value;
                         const author = document.getElementById('author').value;
                         const fecha = document.getElementById('fecha').value;                        
-                        console.log(fecha);
                         const pages = document.getElementById('pages').value;
-                        console.log(pages);
                         const genero = document.getElementById('genre').value;
-                        console.log(genero);
                         const descripcion = document.getElementById('description').value;
                         const copiasTotales =  document.getElementById('copies').value;
                         const copiasDisponibles = document.getElementById('copiesD').value;
-                        console.log(copiasTotales);
-                        console.log(copiasDisponibles);
-        
+                        
                         if (!isbn || !titulo || !fecha || !author || !pages || !genero || !descripcion || !copiasTotales || !copiasDisponibles) {
                             Swal.showValidationMessage('Por favor, completa todos los campos');
                             return false;

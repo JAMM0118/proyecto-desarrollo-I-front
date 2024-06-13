@@ -61,7 +61,13 @@
             });
 
             if (!response.ok) {
-                throw new Error('Error al agregar el cliente');
+                Swal.fire({
+                    title: "Los datos ingresados no son correctos!",
+                    text: "Verifica los datos ingresados e intenta de nuevo.",
+                    icon: "error",
+                    });
+                throw new Error('Error al agregar el prestamo');
+
             }
 
             const responseData = await response.json();

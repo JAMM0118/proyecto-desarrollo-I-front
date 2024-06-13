@@ -2,6 +2,7 @@
 (async function () {
 
     const urlClient = 'https://proyecto-desarrollo-back-production.up.railway.app/api/clientes';
+    const urlPrestamos = 'https://proyecto-desarrollo-back-production.up.railway.app/api/prestamos';
 
     const table = document.querySelector('.table-responsive')
 
@@ -67,9 +68,9 @@
                         '<input type="text" id="cedula" name="cedula" class="swal2-input">' +
                         '<label for="name" class="swal2-label">Nombre Completo:</label>' +
                         '<input type="text" id="name" name="name" class="swal2-input"><br>' +
-                        '<label for="telefono" class="swal2-label">Correo:</label>' +
+                        '<label for="telefono" class="swal2-label">Telefono:</label>' +
                         '<input type="text" id="telefono" name="telefono" class="swal2-input">' +
-                        '<label for="email" class="swal2-label">Telefono:</label>' +
+                        '<label for="email" class="swal2-label">Correo:</label>' +
                         '<input type="email" id="email" name="email" class="swal2-input">' +
                         '</form>',
                     showCancelButton: true,
@@ -157,7 +158,8 @@
         });
     });
 
-
+    let bandera = false;
+                    
 
     const botonEliminar = document.querySelectorAll('.btn-danger');
     botonEliminar.forEach(boton => {
@@ -184,23 +186,38 @@
 
             }).then(async(result) => {
                 if (result.isConfirmed) {
-                    try {
-                        const response = await fetch(`https://proyecto-desarrollo-back-production.up.railway.app/api/clientes/${clienteId}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                            body: JSON.stringify(data)
-                        });
-
-                        if (!response.ok) {
-                            throw new Error('Error al eliminar el cliente');
-                        };
-                        reload();
-                    } catch (error) {
-                        console.log(error);
+                    console.log(bandera);
+                     await clienteHavePrestamos(clienteId);
+                     console.log(bandera);
+                    
+                    if( bandera == false){
+                        try {
+                            const response = await fetch(`https://proyecto-desarrollo-back-production.up.railway.app/api/clientes/${clienteId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify(data)
+                            });
+    
+                            if (!response.ok) {
+                                throw new Error('Error al eliminar el cliente');
+                            };
+                            reload();
+                        } catch (error) {
+                            console.log(error);
+                        }
                     }
+                    else{
+                        Swal.fire({
+                            title: "Este cliente no se puede eliminar",
+                            text: "El cliente esta en el historial de prestamos",
+                            icon: "error",
+                        });
+                    }
+                     
+                     
                 }
             });
 
@@ -209,5 +226,18 @@
             console.log("Hiciste clic en el botón 'Más información'" + clienteId);
         });
     });
+
+    async function clienteHavePrestamos (id){
+        const res = await fetch(urlPrestamos);
+        const data = await res.json();
+        data.forEach(prestamo => {
+            if(prestamo.clienteId == id){
+                bandera = true;
+                return true;
+            }
+        });
+        return false;
+
+    }
 })();
 
