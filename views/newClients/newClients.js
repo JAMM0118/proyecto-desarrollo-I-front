@@ -56,7 +56,7 @@
                 animation: "slide-from-top",
                 confirmButtonText: "Cerrar",
                 confirmButtonColor: "#3598D9",
-                icon: 'info',
+                type: 'info',
                 text: 'No tienes permisos para acceder a esta seccion'
             });
         }
@@ -75,6 +75,18 @@
         const identificacion = document.getElementById('identificacion').value;
         const telefono = document.getElementById('telefono').value;
         const email = document.getElementById('correo').value;
+
+        if(nombreCompleto === '' || identificacion === '' || telefono === '' || email === ''){
+            swal({
+                title: "Por favor llena todos los campos!",
+                type: "error",
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#3598D9",
+            });
+            return;
+        }
         //json pra enviar
         const data = {
             identificacion: identificacion,
@@ -100,6 +112,18 @@
 
             const responseData = await response.json();
             console.log(responseData);
+
+            swal({
+                title: "Enviado!",
+                text: "Tu formulario ha sido enviado correctamente.",
+                type: "success",
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#3598D9",
+            });
+
+
             limpiarCampos();
         } catch (error) {
             console.log(error);

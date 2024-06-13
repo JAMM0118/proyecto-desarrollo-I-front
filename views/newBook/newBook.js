@@ -20,7 +20,20 @@
         const descripcion = document.getElementById('description').value;
         const copiasTotales = document.getElementById('copies').value;
         const copiasDisponibles = document.getElementById('copies').value;
-
+        
+        if(isbn === '' || titulo === '' || author === '' || fechaPublicacion === '' ||
+            numeroPaginas === '' || genero === '' || descripcion === '' || copiasTotales === '' 
+            || copiasDisponibles === ''){
+            swal({
+                title: "Por favor llena todos los campos!",
+                type: "error",
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#3598D9",
+            });
+            return;
+        }
         //json pra enviar
         const data = {
             isbn: isbn,
@@ -50,6 +63,17 @@
 
             const responseData = await response.json();
             console.log(responseData);
+
+            swal({
+                title: "Enviado!",
+                text: "Tu formulario ha sido enviado correctamente.",
+                type: "success",
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#3598D9",
+            });
+
             limpiarCampos();
         } catch (error) {
             console.log(error);

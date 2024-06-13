@@ -28,6 +28,18 @@
         let clientes = await cargarClientes();
         var identificacionCliente = document.getElementById('identificacionCliente').value;
         const idLibro = document.getElementById('idLibro').value;
+        if(identificacionCliente === '' || idLibro === ''){
+            swal({
+                title: "Por favor llena todos los campos!",
+                type: "error",
+                closeOnConfirm: false,
+                animation: "slide-from-top",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#3598D9",
+            });
+            return;
+        }
+
 
         for (let i = 0; i < clientes.length; i++) {
             if (identificacionCliente == clientes[i].identificacion) {
@@ -58,6 +70,17 @@
 
             const responseData = await response.json();
             console.log(responseData);
+
+            swal({
+                    title: "Enviado!",
+                    text: "Tu formulario ha sido enviado correctamente.",
+                    type: "success",
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#3598D9",
+                });
+
             limpiarCampos();
         } catch (error) {
             console.log(error);

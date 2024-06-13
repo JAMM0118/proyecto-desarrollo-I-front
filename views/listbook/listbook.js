@@ -55,7 +55,6 @@
             console.log(libro);
             swal({
                 title: "Informacion del libro",
-                icon: "info",
                 closeOnConfirm: false,
                 animation: "slide-from-top",
                 confirmButtonText: "Cerrar",
