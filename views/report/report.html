@@ -43,50 +43,29 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <h3 class="text-center all-tittles">total préstamos del año 2016</h3>
+                            <h3 class="text-center all-tittles">Préstamos de libros por genero</h3>
                             <div class="table-responsive">
                                 <table class="table table-hover text-center">
                                     <thead>
                                         <tr class="success">
-                                            <th class="text-center">Tipo usuario</th>
-                                            <th class="text-center">N. Préstamos</th>
+                                            <th class="text-center">Genero</th>
+                                            <th class="text-center">Numero de préstamos</th>
                                             <th class="text-center">Porcentaje</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Estudiantes</td>
-                                            <td>0</td>
-                                            <td>0%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Docentes</td>
-                                            <td>0</td>
-                                            <td>0%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Personal administrativo</td>
-                                            <td>0</td>
-                                            <td>0%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Visitantes</td>
-                                            <td>0</td>
-                                            <td>0%</td>
-                                        </tr>
+                                    <tbody id="tablaPrestamos">
                                     </tbody>
-                                    <tfoot>
-                                        <tr class="info">
+                                    <tfoot >
+                                        <tr class="info" >
                                             <th class="text-center">Total</th>
-                                            <th class="text-center">0</th>
-                                            <th class="text-center">0%</th>
+                                            <th class="text-center" id="cantidadPrestamosTotales">0</th>
+                                            <th class="text-center">100%</th>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             <p class="lead text-center"><strong><i class="zmdi zmdi-info-outline"></i>&nbsp;
-                                    ¡Importante!</strong> Para imprimir esta tabla ve a la sección de reportes y
-                                selecciona “Préstamos entregados (por usuarios)”</p>
+                                    ¡Importante!</strong> Esta tabla nos proporciona una idea de cuales son los generos de mayor interes de nuestros clientes</p>
                         </div>
                     </div>
 
@@ -95,30 +74,24 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <h3 class="text-center all-tittles">libros por categorías año 2016</h3>
+                            <h3 class="text-center all-tittles">Cantidad de libros por genero</h3>
                             <div class="table-responsive">
                                 <table class="table table-hover text-center">
                                     <thead>
                                         <tr class="success">
-                                            <th class="text-center">Código</th>
-                                            <th class="text-center">Total libros</th>
+                                            <th class="text-center">Genero</th>
+                                            <th class="text-center">Numero de libros</th>
                                             <th class="text-center">Porcentaje</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Nombre</td>
-                                            <td>Código categoría</td>
-                                            <td>0</td>
-                                            <td>0%</td>
-                                        </tr>
+                                    <tbody id="tablaLibros">
+                                        
                                     </tbody>
                                     <tfoot>
-                                        <tr class="info">
-                                            <th class="text-center"></th>
+                                        <tr class="info">>
                                             <th class="text-center">Total libros</th>
-                                            <th class="text-center">0</th>
-                                            <th class="text-center">0%</th>
+                                            <th class="text-center" id="tablaLibrosTotal">0</th>
+                                            <th class="text-center">100%</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -129,7 +102,7 @@
             </div>
         </div>
     </div>
-
+    <script src="/views/report/report.js"></script>
 </body>
 
 </html>
