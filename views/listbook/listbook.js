@@ -101,7 +101,7 @@
                     html:
                         '<form id="form-swal" style="text-align: left;">' +
                         '<label for="isbn" class="swal2-label">ISBN:</label>' +
-                        '<input type="text" id="isbn" name="isbn" class="swal2-input">' +
+                        '<input type="text" pattern="[0-9]{1,12}" maxlength="12" id="isbn" name="isbn" class="swal2-input">' +
 
                         '<label for="title" class="swal2-label">Titulo:</label>' +
                         '<input type="text" id="title" name="title" class="swal2-input"><br>' +
@@ -113,7 +113,7 @@
                         '<input type="date" id="fecha" name="fecha" class="swal2-input">' +
 
                         '<label for="pages" class="swal2-label">Numero de paginas:</label>' +
-                        '<input type="text" id="pages" name="pages" class="swal2-input">' +
+                        '<input type="text" pattern="[0-9]{1,5}" maxlength="5" id="pages" name="pages" class="swal2-input">' +
 
 
                         '<label for="genre" class="swal2-label">Genero:</label>' +
@@ -123,10 +123,10 @@
                         '<input type="text" id="description" name="description" class="swal2-input">' +
 
                         '<label for="copies" class="swal2-label">Copias totales:</label>' +
-                        '<input type="text" id="copies" name="copies" class="swal2-input">' +
+                        '<input type="text" pattern="[0-9]{1,7}" maxlength="7" id="copies" name="copies" class="swal2-input">' +
 
                         '<label for="copiesD" class="swal2-label">Copias Disponibles:</label>' +
-                        '<input type="text" id="copiesD" name="copiesD" class="swal2-input">' +
+                        '<input type="text" pattern="[0-9]{1,7}" maxlength="7" id="copiesD" name="copiesD" class="swal2-input">' +
                         '</form>',
                     showCancelButton: true,
                     cancelButtonText: "Cancelar",
@@ -135,6 +135,24 @@
                     cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
                     focusConfirm: false, // Evita que el botón confirmar obtenga el foco
                     preConfirm: () => {
+                        const form = document.getElementById('form-swal');
+                        if (!form.checkValidity()) {
+                            let invalidField = null;
+                
+                            Array.from(form.elements).forEach(element => {
+                                if (!element.checkValidity()) {
+                                    invalidField = element;
+                                }
+                            });
+                
+                            if (invalidField) {
+                                Swal.showValidationMessage(`Campo no válido: ${invalidField.name}`);
+                            } else {
+                                Swal.showValidationMessage('Por favor, asegúrese de que todos los campos sean válidos.');
+                            }
+                
+                            return false;
+                        }
                         // Validación opcional o procesamiento antes de enviar
                         //datos del formulario
                         const isbn = document.getElementById('isbn').value;
@@ -153,8 +171,7 @@
                         }
                         return { isbn: isbn, titulo: titulo, author: author,fecha: fecha, pages: pages, genero: genero, descripcion: descripcion, copiasTotales: copiasTotales, copiasDisponibles: copiasDisponibles};
                     }
-                })
-                .then(async (result) => {
+                }).then(async (result) => {
                     if (result.isConfirmed) {
                         //json pra enviar
                         const data = {

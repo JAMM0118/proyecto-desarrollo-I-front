@@ -65,11 +65,11 @@
                     html:
                         '<form id="form-swal" style="text-align: left;">' +
                         '<label for="cedula" class="swal2-label">Identificacion:</label>' +
-                        '<input type="text" id="cedula" name="cedula" class="swal2-input">' +
+                        '<input type="text" id="cedula"  pattern="[0-9]{1,10}" maxlength="10"  name="cedula" class="swal2-input">' +
                         '<label for="name" class="swal2-label">Nombre Completo:</label>' +
                         '<input type="text" id="name" name="name" class="swal2-input"><br>' +
-                        '<label for="telefono" class="swal2-label">Telefono:</label>' +
-                        '<input type="text" id="telefono" name="telefono" class="swal2-input">' +
+                        '<label for="phone" class="swal2-label">Telefono:</label>' +
+                        '<input type="text" pattern="[0-9]{10,10}" maxlength="10" id="phone" name="phone" class="swal2-input">' +
                         '<label for="email" class="swal2-label">Correo:</label>' +
                         '<input type="email" id="email" name="email" class="swal2-input">' +
                         '</form>',
@@ -80,11 +80,30 @@
                     cancelButtonColor: "#dc3545", // Color de fondo del botón cancelar
                     focusConfirm: false, // Evita que el botón confirmar obtenga el foco
                     preConfirm: () => {
+                        const form = document.getElementById('form-swal');
+                        if (!form.checkValidity()) {
+                            let invalidField = null;
+                
+                            Array.from(form.elements).forEach(element => {
+                                if (!element.checkValidity()) {
+                                    invalidField = element;
+                                }
+                            });
+                
+                            if (invalidField) {
+                                Swal.showValidationMessage(`Campo no válido: ${invalidField.name}`);
+                            } else {
+                                Swal.showValidationMessage('Por favor, asegúrese de que todos los campos sean válidos.');
+                            }
+                
+                            return false;
+                        }
+                     
                         // Validación opcional o procesamiento antes de enviar
                         const name = document.getElementById('name').value;
                         const email = document.getElementById('email').value;
                         const cedula = document.getElementById('cedula').value;
-                        const telefono = document.getElementById('telefono').value;
+                        const telefono = document.getElementById('phone').value;
                         console.log("Nombre:", name);
                         console.log("Correo:", email);
                         console.log("Cedula:", cedula);
@@ -148,7 +167,7 @@
                 document.getElementById('name').value = nameValue;
                 document.getElementById('email').value = emailValue;
                 document.getElementById('cedula').value = cedulaValue;
-                document.getElementById('telefono').value = telefonoValue;
+                document.getElementById('phone').value = telefonoValue;
 
             }
 
