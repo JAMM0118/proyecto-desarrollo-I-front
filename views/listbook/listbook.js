@@ -16,7 +16,7 @@
                     <h4 class="media-heading">${libro.id} - ${libro.titulo}</h4>
                     <div class="pull-left">
                         <strong>${libro.autor}<br>
-                        <strong>${libro.fechaPublicacion}<br>
+                        <strong>Cantidad disponible: ${libro.copiasDisponibles}<br>
                     </div>
                     <p class="text-center pull-right">
                         <a data-libro-id="${libro.id}" class="btn btn-danger btn-xs" style="margin-right: 10px;"><i class="zmdi zmdi-delete"></i> &nbsp;&nbsp;Eliminar</a>
