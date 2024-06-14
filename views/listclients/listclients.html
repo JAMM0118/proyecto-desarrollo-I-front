@@ -51,17 +51,15 @@
             </div>
         </div>
         <div class="container-fluid" style="margin: 40px 0;">
-            <!-- <form class="pull-right" style="width: 30% !important;" autocomplete="off">
-                <div class="group-material">
-                    <input type="search" style="display: inline-block !important; width: 70%;"
-                        class="material-control tooltips-general" placeholder="Buscar Cliente" required=""
-                        pattern="[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}" maxlength="50" data-toggle="tooltip" data-placement="top"
-                        title="Escribe los nombres, sin los apellidos">
+                <div class="group-material pull-right" style="width: 30% !important;">
+                    <input type="text" id="search"  style="display: inline-block !important; width: 70%;"
+                        class="material-control tooltips-general" placeholder="Buscar por nombre" required=""
+                        data-toggle="tooltip" data-placement="top">
                     <button class="btn" style="margin: 0; height: 43px; background-color: transparent !important;">
                         <i class="zmdi zmdi-search" style="font-size: 25px;"></i>
                     </button>
                 </div>
-            </form> -->
+
             <h2 class="text-center all-tittles" style="clear: both; margin: 25px 0;">Listado de Clientes</h2>
             <div class="table-responsive">
                 <div class="div-table" style="margin:0 !important;">
@@ -76,9 +74,10 @@
                     </div>
                 </div>
             </div>
+            <div id="datos"></div>
         </div>
     </div>
-
+        
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="/views/listclients/listClients.js"></script>
         <script src="/views/navegacionList.js"></script>
