@@ -545,3 +545,6 @@ input.material-control:focus ~ .highlight {
 }
 
 
+.filtro{
+    display: none;
+}
